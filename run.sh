@@ -7,7 +7,7 @@ kernelver=""
 physical_cpu_amount=""
 
 # Other
-ver=0.0.8.2
+ver=0.0.9
 location=`pwd`
 savedlocation=$location
 kernelname=-super
