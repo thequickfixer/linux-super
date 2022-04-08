@@ -6,7 +6,7 @@ loginman=""
 kernelver=""
 
 # Other
-ver=0.0.4
+ver=0.0.5
 location=`pwd`
 kernelname=-super
 WORKDIR=$location/linux-super-work
@@ -26,20 +26,20 @@ while [[ !(-f "linux-$kernelver.tar.xz") ]]; do #while the file does not exist o
     read -p "> " kernelver
     wget --no-clobber https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$kernelver.tar.xz
     if [[ !(-f "linux-$kernelver.tar.xz") ]]; then #tell the user something went wrong
-        echo "Could not find that version! Check for typos and try again."
+        echo "Could not find version ($kernelver)!  Check for typos and try again."
     fi
 done
 
 while ! [ -x "$(command -v $input)" ]; do
     echo -ne "\nPerform extraction of linux-$kernelver\n(y or n)?\n"
-    read -p "> " input   
+    read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "\nPerforming extraction..."
+        $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
     elif [ $input == "n" ]; then
     exit
-    fi
 done
-$loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
+fi
 cd $kernelworkdir
 if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
@@ -48,3 +48,4 @@ elif [ $kernelver != "5.14.21" ]; then
     #APPLY GENERAL PATCHES (Hopefully it works lol)
     echo -ne "Applied general patches"
 fi
+
