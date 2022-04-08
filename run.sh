@@ -43,7 +43,8 @@ while ! [ -x "$(command -v $input)" ]; do
     fi
 done
 
-echo -ne "\nResuming this will patch the kernel"
+echo -ne "\nResuming this will:"
+echo -ne
 read -p "Press enter to resume"
 
 cd /usr/src/linux-$kernelver
@@ -61,3 +62,5 @@ elif [ $kernelver != "5.14.21" ]; then
     $loginman patch -p1 < $savedlocation/linux-super-usr-patches/*.patch
     echo -ne "Applied general and user patches"
 fi
+
+$loginman 
