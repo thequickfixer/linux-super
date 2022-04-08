@@ -32,18 +32,18 @@ while [[ !(-f "linux-$kernelver.tar.xz") ]]; do #while the file does not exist o
     fi
 done
 
-while ! [ -x "$(command -v $input)" ]; do
-    echo -ne "\nPerform extraction of linux-$kernelver\n(y or n)?\n"
-    read -p "> " input
+echo -ne "\nPerform extraction of linux-$kernelver\n(y or n)?\n"
+read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "\nPerforming extraction..."
         $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
-        break
     elif [ $input == "n" ]; then
         echo -ne "Exiting..\n"
         exit
-    fi
-done
+fi
+
+# reset input
+input=""
 
 echo -ne "\nResuming this will:"
 echo -ne "\n- Add patches\n"
@@ -52,6 +52,7 @@ read -p "Press enter to resume..."
 cd /usr/src/linux-$kernelver
 if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
+    
     $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch
     $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/graysky/*.patch
     $loginman patch -p1 < $savedlocation/linux-super-patches/clearlinux/*.patch
