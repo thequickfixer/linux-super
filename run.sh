@@ -45,9 +45,8 @@ while ! [ -x "$(command -v $input)" ]; do
 done
 
 echo -ne "\nResuming this will:"
-echo -ne "- 
-echo -ne "- Add patches\n"
-read -p "Press enter to resume"
+echo -ne "\n- Add patches\n"
+read -p "Press enter to resume..."
 
 cd /usr/src/linux-$kernelver
 if [ $kernelver == "5.14.21" ]; then
@@ -70,6 +69,14 @@ while ! [ -x "$(command -v $physical_cpu_amount)" ]; do
     echo -ne "\nEnter the amount of physical cores in your cpu:\n"
     read -p "> " $physical_cpu_amount
 done
+
+echo -ne "\nWARNING! Resuming this will:"
+echo -ne "\n- build the kernel"
+echo -ne "\n- build the kernel modules and install them"
+echo -ne "\n- dracut building the initramfs"
+echo -ne "\n- grub-mkconfig generating the kernels\n"
+read -p "Press enter to resume..."
+
 $loginman make -j$physical_cpu_amount
 $loginman make modules_install && $loginman make install
 $loginman dracut --hostonly --force --kver $kernelver
