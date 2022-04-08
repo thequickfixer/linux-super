@@ -12,6 +12,7 @@ location=`pwd`
 savedlocation=$location
 kernelname=-super
 WORKDIR=$location/linux-super-work
+validNum='^[0-9]+$'
 
 echo -ne "\nWelcome to the linux-super installer v$ver"
 
@@ -65,9 +66,9 @@ elif [ $kernelver != "5.14.21" ]; then
 fi
 
 $loginman make menuconfig
-while ! [ -x "$(command -v $physical_cpu_amount)" ]; do
+while ! [[ $physical_cpu_amount =~ $validNum ]]; do
     echo -ne "\nEnter the amount of physical cores in your cpu:\n"
-    read -p "> " $physical_cpu_amount
+    read -p "> " physical_cpu_amount
 done
 
 echo -ne "\nWARNING! Resuming this will:"
