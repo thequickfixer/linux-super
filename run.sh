@@ -4,6 +4,9 @@
 ver=0.0.2
 location=`pwd`
 kernelname=-super
+workdir=$location/linux-super-work
+kernelworkdir=/usr/src/linux-$kernelver
+
 # End of variables
 
 echo -ne "\nWelcome to the linux-super installer v$ver"
@@ -19,6 +22,15 @@ read -p "> " kernelver
 if [ $kernelver == 5.14.21 ]; then
     echo "Download?"
     read -p "> " input
+    if [ $input == y ]; then
+        mkdir linux-super-work
+        cd $workdir
+        wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$kernelver.tar.xz
+        echo "Extract the files?"
+        if [ ! -d "$kernelworkdir" ]; then
+            $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
+fi
+
 else
     echo "Using unknown kernel $kernelver"
 fi
