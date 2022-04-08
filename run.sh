@@ -8,6 +8,7 @@ kernelver=""
 # Other
 ver=0.0.6
 location=`pwd`
+savedlocation=$(location)
 kernelname=-super
 WORKDIR=$location/linux-super-work
 
