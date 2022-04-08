@@ -52,7 +52,8 @@ read -p "Press enter to resume..."
 cd /usr/src/linux-$kernelver
 if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
-    $loginman patch -p1 < $savedlocation/linux-super-patches/*.patch
+    $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch
+    $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/graysky/*.patch
     $loginman patch -p1 < $savedlocation/linux-super-patches/clearlinux/*.patch
     echo -ne "Applying user patches"
     $loginman patch -p1 < $savedlocation/linux-super-usr-patches-def/*.patch
