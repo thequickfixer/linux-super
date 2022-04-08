@@ -33,7 +33,11 @@ done
 while ! [ -x "$(command -v $input)" ]; do
     echo -ne "\nPerform extraction of linux-$kernelver\n(y or n)?\n"
     read -p "> " input   
-    if 
+    if [ $input == "y" ] || [ $input == "" ]; then
+        echo -ne "\nPerforming extraction..."
+    elif [ $input == "n" ]; then
+    exit
+    fi
 done
 $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
 cd $kernelworkdir
