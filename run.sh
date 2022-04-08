@@ -4,9 +4,10 @@
 input=""
 loginman=""
 kernelver=""
+physical_cpu_amount=""
 
 # Other
-ver=0.0.8
+ver=0.0.8.2
 location=`pwd`
 savedlocation=$location
 kernelname=-super
@@ -44,7 +45,8 @@ while ! [ -x "$(command -v $input)" ]; do
 done
 
 echo -ne "\nResuming this will:"
-echo -ne "spooky\n"
+echo -ne "- 
+echo -ne "- Add patches\n"
 read -p "Press enter to resume"
 
 cd /usr/src/linux-$kernelver
@@ -64,6 +66,11 @@ elif [ $kernelver != "5.14.21" ]; then
 fi
 
 $loginman make menuconfig
+while ! [ -x "$(command -v $loginman)" ]; do
+    echo -ne "\nEnter the amount of physical cores in your cpu:\n"
+    read -p "> " $physical_cpu_amount
+done
+$loginman make -j$physical_cpu_amount
 $loginman make modules_install && $loginman make install
 $loginman dracut --hostonly --force --kver $kernelver
 $loginman grub-mkconfig -o /boot/grub/grub.cfg
