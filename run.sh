@@ -66,7 +66,7 @@ elif [ $kernelver != "5.14.21" ]; then
 fi
 
 $loginman make menuconfig
-while ! [ -x "$(command -v $loginman)" ]; do
+while ! [ -x "$(command -v $physical_cpu_amount)" ]; do
     echo -ne "\nEnter the amount of physical cores in your cpu:\n"
     read -p "> " $physical_cpu_amount
 done
