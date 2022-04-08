@@ -13,7 +13,9 @@ echo -ne "\nPlease enter your preferred privilege escalation manager\n(doas or s
 
 read -p "> " loginman
 
-echo -ne "\nWhat kernel version?\t(Note: 5.14.21 is the kernel default)" kernelver
+echo -ne "\nWhat kernel version?\n(Note: 5.14.21 is the kernel default)" 
+
+read -p "> " kernelver
 
 if [ $kernelver == 5.14.21 ]; then
     echo "Download?"
@@ -25,4 +27,4 @@ fi
 echo "don't forget to delete the .tar.xz"
 
 
-echo "end of program lmao"
+echo "end of program"
