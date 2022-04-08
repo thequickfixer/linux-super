@@ -32,7 +32,7 @@ done
 if [ ! -d "$kernelworkdir" ]; then {
     $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
     cd $kernelworkdir
-    if [ $kernelver == "5.14.21" ]; then
+    if [ ! $kernelver == "5.14.21" ]; then
         #TODO: apply 5.14.21-specific patches
     else
         #APPLY GENERAL PATCHES (Hopefully it works lol)
