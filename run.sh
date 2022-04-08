@@ -11,4 +11,10 @@ echo
 read -p "> " loginman
 echo
 echo "Set preferred login as $loginman"
-echo
+echo 
+echo "What kernel version?"
+echo 
+echo "Note: 5.14.21 is the kernel default"                                   
+echo 
+read -p	"> " kernelver
+if kernelver
