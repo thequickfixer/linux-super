@@ -46,4 +46,3 @@ index a110338c860c..f91099276a78 100644
  obj-$(CONFIG_MTD)		+= mtd/
  obj-$(CONFIG_SPI)		+= spi/
 -- 
-https://clearlinux.org
