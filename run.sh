@@ -6,7 +6,7 @@ loginman=""
 kernelver=""
 
 # Other
-ver=0.0.3
+ver=0.0.4
 location=`pwd`
 kernelname=-super
 WORKDIR=$location/linux-super-work
