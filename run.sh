@@ -44,7 +44,7 @@ while ! [ -x "$(command -v $input)" ]; do
 done
 
 echo -ne "\nResuming this will:"
-echo -ne
+echo -ne "spooky\n"
 read -p "Press enter to resume"
 
 cd /usr/src/linux-$kernelver
@@ -63,4 +63,7 @@ elif [ $kernelver != "5.14.21" ]; then
     echo -ne "Applied general and user patches"
 fi
 
-$loginman 
+$loginman make menuconfig
+$loginman make modules_install && $loginman make install
+$loginman dracut --hostonly --force --kver $kernelver
+$loginman grub-mkconfig -o /boot/grub/grub.cfg
