@@ -49,9 +49,12 @@ if [ $kernelver == "5.14.21" ]; then
     $loginman patch -p1 < $location/linux-super-patches/*.patch
     $loginman patch -p1 < $location/linux-super-patches/clearlinux/*.patch
     echo -ne "Applying user patches"
-    $loginman patch -p1 < $location/linux-super-usr-patches/*.patch
+    $loginman patch -p1 < $location/linux-super-usr-patches-def/*.patch
     echo -ne "Applied 5.14.21 specific patches"
 elif [ $kernelver != "5.14.21" ]; then
     #APPLY GENERAL PATCHES (Hopefully it works lol)
-    echo -ne "Applied general patches"
+    $loginman patch -p1 < $location/linux-super-patches/*.patch
+    $loginman patch -p1 < $location/linux-super-patches/clearlinux/*.patch
+    $loginman patch -p1 < $location/linux-super-usr-patches/*.patch
+    echo -ne "Applied general and user patches"
 fi
