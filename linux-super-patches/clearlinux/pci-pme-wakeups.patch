@@ -23,4 +23,3 @@ index 3d2fb394986a..aebf75444a83 100644
  static void pci_dev_d3_sleep(struct pci_dev *dev)
  {
 -- 
-https://clearlinux.org
