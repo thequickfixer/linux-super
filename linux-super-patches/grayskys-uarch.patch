@@ -678,4 +678,3 @@ index 75884d2cdec3..4e6a08d4c7e5 100644
  #define MODULE_PROC_FAMILY "ELAN "
  #elif defined CONFIG_MCRUSOE
 -- 
-2.31.1
