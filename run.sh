@@ -29,13 +29,16 @@ while [[ !(-f "linux-$kernelver.tar.xz") ]]; do #while the file does not exist o
         echo "Could not find that version! Check for typos and try again."
     fi
 done
-cd ..
+if [ ! -d "$kernelworkdir" ]; then {
+    $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
+    cd $kernelworkdir
+    if [ $kernelver == "5.14.21" ]; then
+        #TODO: apply 5.14.21-specific patches
+    else
+        #APPLY GENERAL PATCHES (Hopefully it works lol)
+    fi
+}
 
-
-
-#if [ $kernelver == "5.14.21" ]; then
-#   #TODO: apply 5.14.21-specific patches
-#fi
 
 #if [ $kernelver == "whatever" ]; then
 #   #TODO: apply whatever-specific patches
