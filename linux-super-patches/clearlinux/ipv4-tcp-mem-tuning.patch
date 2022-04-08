@@ -24,4 +24,3 @@ index 38f936785179..3fe2057a9d41 100644
  	init_net.ipv4.sysctl_tcp_wmem[0] = SK_MEM_QUANTUM;
  	init_net.ipv4.sysctl_tcp_wmem[1] = 16*1024;
 -- 
-https://clearlinux.org
