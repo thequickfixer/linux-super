@@ -216,4 +216,3 @@ index 0b66e25c0e2d..406b41b387d5 100644
  		.enter_s2idle = intel_idle_s2idle, },
  	{
 -- 
-https://clearlinux.org
