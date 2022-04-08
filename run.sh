@@ -1,30 +1,28 @@
 #!/bin/bash
+test=$1
+echo $test
 
-ver=0.0.1
+
+
+ver=0.0.2
 location=`pwd`
 kernelname=-super
+echo -ne "\nWelcome to the linux-super installer v$ver"
 
-echo
-echo "Welcome to the linux-super installer v$ver"
-echo
-echo "Please enter your preferred login as manager (doas or sudo)"
-echo
+echo -ne "\nPlease enter your preferred privilege escalation manager\n(doas or sudo)?\n" 
+
 read -p "> " loginman
-echo
-echo "Set preferred login as $loginman"
-echo
-echo "What kernel version?"
-echo
-echo "Note: 5.14.21 is the kernel default"
-echo 
-read -p "> " kernelver
+
+echo -ne "\nWhat kernel version?\t(Note: 5.14.21 is the kernel default)" kernelver
+
 if [ $kernelver == 5.14.21 ]; then
-echo "Download?"
-read -p "> " input
+    echo "Download?"
+    read -p "> " input
 else
-echo 
-echo "Using unknown kernel $kernelver"
-echo 
+    echo "Using unknown kernel $kernelver"
 fi
-echo 
-echo "..."
+
+echo "don't forget to delete the .tar.xz"
+
+
+echo "end of program lmao"
