@@ -12,7 +12,7 @@ echo -ne "\nPlease enter your preferred privilege escalation manager\n(doas or s
 
 read -p "> " loginman
 
-echo -ne "\nWhat kernel version?\n(Note: 5.14.21 is the kernel default)" 
+echo -ne "\nWhat kernel version?\n(Note: 5.14.21 is the kernel default)\n" 
 
 read -p "> " kernelver
 
