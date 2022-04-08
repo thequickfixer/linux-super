@@ -6,7 +6,7 @@ loginman=""
 kernelver=""
 
 # Other
-ver=0.0.7
+ver=0.0.8
 location=`pwd`
 savedlocation=$location
 kernelname=-super
@@ -37,8 +37,10 @@ while ! [ -x "$(command -v $input)" ]; do
         echo -ne "\nPerforming extraction..."
         $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
         break
-    fi
     elif [ $input == "n" ]; then
+        echo -ne "Exiting..\n"
+        exit
+    fi
 done
 
 cd /usr/src/linux-$kernelver
