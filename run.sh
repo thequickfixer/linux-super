@@ -26,10 +26,13 @@ if [ $kernelver == 5.14.21 ]; then
         mkdir linux-super-work
         cd $workdir
         wget https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$kernelver.tar.xz
+        if [ ! -d "$workdir/linux-$kernelver.tar.xz" ]; then
+            echo "no kernel version"
+        else
         echo "Extract the files?"
         if [ ! -d "$kernelworkdir" ]; then
             $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
-fi
+        else
 
 else
     echo "Using unknown kernel $kernelver"
