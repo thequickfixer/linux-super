@@ -1,12 +1,11 @@
 #!/bin/bash
-test=$1
-echo $test
 
-
-
+# Variables
 ver=0.0.2
 location=`pwd`
 kernelname=-super
+# End of variables
+
 echo -ne "\nWelcome to the linux-super installer v$ver"
 
 echo -ne "\nPlease enter your preferred privilege escalation manager\n(doas or sudo)?\n" 
@@ -25,6 +24,4 @@ else
 fi
 
 echo "don't forget to delete the .tar.xz"
-
-
 echo "end of program"
