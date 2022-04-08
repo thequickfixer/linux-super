@@ -1,6 +1,6 @@
 # Welcome to linux-super
 
-Linux-super is a kernel patched for speed. This kernel isn't expected to be super secure, but secure to some degree.
+Linux-super is a kernel patched for speed. This kernel isn't expected to be super secure, but secure to some degree. Expect missing things and bugs.
 
 # Requirements
 
