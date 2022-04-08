@@ -10,7 +10,6 @@ ver=0.0.5
 location=`pwd`
 kernelname=-super
 WORKDIR=$location/linux-super-work
-kernelworkdir=/usr/src/linux-$kernelver
 
 echo -ne "\nWelcome to the linux-super installer v$ver"
 
@@ -36,11 +35,11 @@ while ! [ -x "$(command -v $input)" ]; do
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "\nPerforming extraction..."
         $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
-    elif [ $input == "n" ]; then
-    exit
+        break
+    fi
 done
-fi
-cd $kernelworkdir
+
+cd /usr/src/linux-$kernelver
 if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
     echo -ne "Applied 5.14.21 specific patches"
@@ -48,4 +47,3 @@ elif [ $kernelver != "5.14.21" ]; then
     #APPLY GENERAL PATCHES (Hopefully it works lol)
     echo -ne "Applied general patches"
 fi
-
