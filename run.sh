@@ -43,6 +43,9 @@ while ! [ -x "$(command -v $input)" ]; do
     fi
 done
 
+echo -ne "\nResuming this will patch the kernel"
+read -p "Press enter to resume"
+
 cd /usr/src/linux-$kernelver
 if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
