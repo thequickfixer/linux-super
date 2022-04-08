@@ -38,6 +38,7 @@ while ! [ -x "$(command -v $input)" ]; do
         $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
         break
     fi
+    elif [ $input == "n" ]; then
 done
 
 cd /usr/src/linux-$kernelver
