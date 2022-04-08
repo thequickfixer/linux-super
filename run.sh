@@ -8,7 +8,7 @@ kernelver=""
 # Other
 ver=0.0.6
 location=`pwd`
-savedlocation=$(location)
+savedlocation=$location
 kernelname=-super
 WORKDIR=$location/linux-super-work
 
@@ -32,7 +32,6 @@ done
 
 while ! [ -x "$(command -v $input)" ]; do
     echo -ne "\nPerform extraction of linux-$kernelver\n(y or n)?\n"
-    echo -ne "home dir is $savedlocation"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "\nPerforming extraction..."
