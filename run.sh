@@ -135,6 +135,8 @@ elif [ $kernelver != "5.14.21" ]; then
     echo -ne "Applied general and user patches"
 fi
 
+#Automate CPU count
+#Let the user know they might not have enough ram <2GB
 $loginman make menuconfig
 while ! [[ $physical_cpu_amount =~ $validNum ]]; do
     echo -ne "\nEnter the amount of physical cores in your cpu:\n"
