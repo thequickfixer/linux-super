@@ -67,7 +67,7 @@ if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
     echo -ne "\nApply the BFQ/PDS scheduler patch? (y/n)\n"
     read -p "> " input
-    while []; do
+    while ! [ "$inputdone" ]; do
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nApplying the BFQ/PDS scheduler patch"
             for i in $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch; 
