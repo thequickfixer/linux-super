@@ -97,6 +97,17 @@ if [ $kernelver == "5.14.21" ]; then
         echo -ne "user selected no\n"
     fi
     input=""
+    echo -ne "\nAttempt to apply high resolution timer patches? (y/n)\n"
+    read -p "> " input
+    if [ $input == "y" ] || [ $input == "" ]; then
+        echo -ne "\nAttempting to apply high resoultion timer patches..."
+        for i in $savedlocation/linux-super-patches/5.14/ck-hrtimer/*.patch; 
+            do $loginman patch -p1 < $i; 
+        done
+    elif [ $input == "n" ]; then
+        echo -ne "user selected no\n"
+    fi
+    input=""
     echo -ne "\nApply user patches? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
@@ -127,6 +138,17 @@ elif [ $kernelver != "5.14.21" ]; then
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "\nApplying clearlinux patches"
         for i in $savedlocation/linux-super-patches/clearlinux/*.patch; 
+            do $loginman patch -p1 < $i; 
+        done
+    elif [ $input == "n" ]; then
+        echo -ne "user selected no\n"
+    fi
+    input=""
+    echo -ne "\nAttempt to apply high resolution timer patches? (y/n)\n"
+    read -p "> " input
+    if [ $input == "y" ] || [ $input == "" ]; then
+        echo -ne "\nAttempting to apply high resoultion timer patches..."
+        for i in $savedlocation/linux-super-patches/5.14/ck-hrtimer/*.patch; 
             do $loginman patch -p1 < $i; 
         done
     elif [ $input == "n" ]; then
