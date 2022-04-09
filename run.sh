@@ -52,7 +52,7 @@ read -p "Press enter to resume..."
 cd /usr/src/linux-$kernelver
 if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
-    echo -ne "\nApply the BFQ/PDS scheduler patch?\n"
+    echo -ne "\nApply the BFQ/PDS scheduler patch? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "n\Applying the BFQ/PDS scheduler patch"
@@ -61,7 +61,7 @@ if [ $kernelver == "5.14.21" ]; then
         echo -ne "user selected no\n"
     fi
     input=""
-    echo -ne "\nApply graysky's uarches patch?\n"
+    echo -ne "\nApply graysky's uarches patch? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "n\Applying the uarch patch"
@@ -70,7 +70,7 @@ if [ $kernelver == "5.14.21" ]; then
         echo -ne "user selected no\n"
     fi
     input=""
-    echo -ne "\nApply clearlinux patches?\n"
+    echo -ne "\nApply clearlinux patches? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "n\Applying clearlinux patches"
@@ -79,7 +79,7 @@ if [ $kernelver == "5.14.21" ]; then
         echo -ne "user selected no\n"
     fi
     input=""
-    echo -ne "\nApply user patches?\n"
+    echo -ne "\nApply user patches? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "n\Applying user patches"
