@@ -139,11 +139,10 @@ elif [ $kernelver != "5.14.21" ]; then
 fi
 
 #Let the user know they might not have enough ram <2GB
-if [ $t_mb < "2048" ]; then
+if [ $t_mb -gt "2048" ]; then
     echo -ne "\nUser has enough ram to generate the kernel, Above 2048MB"
     else
     echo -ne "\nWARNING: USER MAY NOT HAVE ENOUGH RAM! Below 2048MB"
-    fi
 fi
 
 $loginman make menuconfig
