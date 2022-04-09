@@ -4,7 +4,7 @@
 input=""
 loginman=""
 kernelver=""
-physical_cpu_amount=""
+physical_cpu_amount=`grep -c ^processor /proc/cpuinfo`
 
 # Other
 ver=0.1.5
@@ -13,6 +13,7 @@ savedlocation=$location
 kernelname=-super
 WORKDIR=$location/linux-super-work
 validNum='^[0-9]+$'
+t_mb=$(free -m | awk '/^Mem:/{print $2}')
 
 echo -ne "\nWelcome to the linux-super installer v$ver"
 
@@ -137,13 +138,15 @@ elif [ $kernelver != "5.14.21" ]; then
     echo -ne "Applied general and user patches"
 fi
 
-#Automate CPU count
 #Let the user know they might not have enough ram <2GB
+if [ $t_mb < "2048" ]; then
+    echo -ne "\nUser has enough ram to generate the kernel, Above 2048MB"
+    else
+    echo -ne "\nWARNING: USER MAY NOT HAVE ENOUGH RAM! Below 2048MB"
+    fi
+fi
+
 $loginman make menuconfig
-while ! [[ $physical_cpu_amount =~ $validNum ]]; do
-    echo -ne "\nEnter the amount of physical cores in your cpu:\n"
-    read -p "> " physical_cpu_amount
-done
 
 echo -ne "\nWARNING! Resuming this will:"
 echo -ne "\n- build the kernel"
