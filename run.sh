@@ -97,17 +97,6 @@ if [ $kernelver == "5.14.21" ]; then
         echo -ne "user selected no\n"
     fi
     input=""
-    echo -ne "\nAttempt to apply network IO patches? (y/n)\n"
-    read -p "> " input
-    if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "\nAttempting to apply network IO patches..."
-        for i in $savedlocation/linux-super-patches/5.14/axboe/*.patch; 
-            do $loginman patch -p1 < $i; 
-        done
-    elif [ $input == "n" ]; then
-        echo -ne "user selected no\n"
-    fi
-    input=""
     echo -ne "\nAttempt to apply high resolution timer patches? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
