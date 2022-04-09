@@ -55,8 +55,10 @@ if [ $kernelver == "5.14.21" ]; then
     echo -ne "\nApply the BFQ/PDS scheduler patch? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "n\Applying the BFQ/PDS scheduler patch"
-        $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch
+        echo -ne "\nApplying the BFQ/PDS scheduler patch"
+        for i in $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch; 
+            do $loginman patch -p1 < $i; 
+        done
     elif [ $input == "n" ]; then
         echo -ne "user selected no\n"
     fi
@@ -64,8 +66,10 @@ if [ $kernelver == "5.14.21" ]; then
     echo -ne "\nApply graysky's uarches patch? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "n\Applying the uarch patch"
-        $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/graysky/*.patch
+        echo -ne "\nApplying the uarch patch"
+        for i in $savedlocation/linux-super-patches/5.14/graysky/*.patch; 
+            do $loginman patch -p1 < $i; 
+        done
     elif [ $input == "n" ]; then
         echo -ne "user selected no\n"
     fi
@@ -73,8 +77,10 @@ if [ $kernelver == "5.14.21" ]; then
     echo -ne "\nApply clearlinux patches? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "n\Applying clearlinux patches"
-        $loginman patch -p1 < $savedlocation/linux-super-patches/clearlinux/*.patch
+        echo -ne "\nApplying clearlinux patches"
+        for i in $savedlocation/linux-super-patches/clearlinux/*.patch; 
+            do $loginman patch -p1 < $i; 
+        done
     elif [ $input == "n" ]; then
         echo -ne "user selected no\n"
     fi
@@ -82,8 +88,10 @@ if [ $kernelver == "5.14.21" ]; then
     echo -ne "\nApply user patches? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "n\Applying user patches"
-        $loginman patch -p1 < $savedlocation/linux-super-usr-patches-def/*.patch
+        echo -ne "\nApplying user patches"
+        for i in $savedlocation/linux-super-usr-patches-def/*.patch; 
+            do $loginman patch -p1 < $i; 
+        done
     elif [ $input == "n" ]; then
         echo -ne "user selected no\n"
     fi
@@ -94,7 +102,7 @@ elif [ $kernelver != "5.14.21" ]; then
     echo -ne "\nApply general patches (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "n\Applying the uarch patch"
+        echo -ne "\nApplying the uarch patch"
         $loginman patch -p1 < $savedlocation/linux-super-patches/*.patch
     elif [ $input == "n" ]; then
         echo -ne "user selected no\n"
@@ -103,7 +111,7 @@ elif [ $kernelver != "5.14.21" ]; then
     echo -ne "\nApply clearlinux patches? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "n\Applying clearlinux patches"
+        echo -ne "\nApplying clearlinux patches"
         $loginman patch -p1 < $savedlocation/linux-super-patches/clearlinux/*.patch
     elif [ $input == "n" ]; then
         echo -ne "user selected no\n"
@@ -112,7 +120,7 @@ elif [ $kernelver != "5.14.21" ]; then
     echo -ne "\nApply user patches? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "n\Applying user patches"
+        echo -ne "\nApplying user patches"
         $loginman patch -p1 < $savedlocation/linux-super-usr-patches/*.patch
     elif [ $input == "n" ]; then
         echo -ne "user selected no\n"
