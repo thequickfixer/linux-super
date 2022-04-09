@@ -7,7 +7,7 @@ kernelver=""
 physical_cpu_amount=`grep -c ^processor /proc/cpuinfo`
 
 # Other
-ver=0.1.5
+ver=0.1.6
 location=`pwd`
 savedlocation=$location
 kernelname=-super
@@ -142,7 +142,7 @@ fi
 if [ $t_mb -gt "2048" ]; then
     echo -ne "\nUser has enough ram to generate the kernel, Above 2048MB"
     else
-    echo -ne "\nWARNING: USER MAY NOT HAVE ENOUGH RAM! Below 2048MB"
+    echo -ne "\nWARNING: USER MAY NOT HAVE ENOUGH RAM! Below 2048MB\n"
 fi
 
 $loginman make menuconfig
