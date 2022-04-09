@@ -7,7 +7,7 @@ kernelver=""
 physical_cpu_amount=`grep -c ^processor /proc/cpuinfo`
 
 # Other
-ver=0.1.6
+ver=0.1.7
 location=`pwd`
 savedlocation=$location
 kernelname=-super
