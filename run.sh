@@ -52,36 +52,40 @@ read -p "Press enter to resume..."
 cd /usr/src/linux-$kernelver
 if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
-    echo -ne "\Apply the BFQ/PDS scheduler patch?\n"
+    echo -ne "\nApply the BFQ/PDS scheduler patch?\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "n\Applying the BFQ/PDS scheduler patch"
         $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch
     elif [ $input == "n" ]; then
+        echo -ne "user selected no\n"
     fi
     input=""
-    echo -ne "\Apply graysky's uarches patch?\n"
+    echo -ne "\nApply graysky's uarches patch?\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "n\Applying the uarch patch"
         $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/graysky/*.patch
     elif [ $input == "n" ]; then
+        echo -ne "user selected no\n"
     fi
     input=""
-    echo -ne "\Apply clearlinux patches?\n"
+    echo -ne "\nApply clearlinux patches?\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "n\Applying clearlinux patches"
         $loginman patch -p1 < $savedlocation/linux-super-patches/clearlinux/*.patch
     elif [ $input == "n" ]; then
+        echo -ne "user selected no\n"
     fi
     input=""
-    echo -ne "\Apply user patches?\n"
+    echo -ne "\nApply user patches?\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "n\Applying user patches"
         $loginman patch -p1 < $savedlocation/linux-super-usr-patches-def/*.patch
     elif [ $input == "n" ]; then
+        echo -ne "user selected no\n"
     fi
     input=""
     echo -ne "Applied 5.14.21 specific patches"
