@@ -4,7 +4,7 @@ Linux-super is a kernel patched for speed. This kernel isn't expected to be supe
 
 # Credits
 
-TKG Linux kernel! Please check them out!
+TkG Linux kernel! Please check them out!
 - https://github.com/Frogging-Family/linux-tkg
 
 # Requirements
