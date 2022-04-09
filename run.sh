@@ -2,6 +2,7 @@
 
 # Variables
 input=""
+inputdone=false
 loginman=""
 kernelver=""
 physical_cpu_amount=`grep -c ^processor /proc/cpuinfo`
@@ -66,14 +67,19 @@ if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
     echo -ne "\nApply the BFQ/PDS scheduler patch? (y/n)\n"
     read -p "> " input
-    if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "\nApplying the BFQ/PDS scheduler patch"
-        for i in $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch; 
-            do $loginman patch -p1 < $i; 
-        done
-    elif [ $input == "n" ]; then
-        echo -ne "user selected no\n"
-    fi
+    while []; do
+        if [ $input == "y" ] || [ $input == "" ]; then
+            echo -ne "\nApplying the BFQ/PDS scheduler patch"
+            for i in $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch; 
+                do $loginman patch -p1 < $i; 
+            done
+            inputdone=true
+        elif [ $input == "n" ]; then
+            echo -ne "user selected no\n"
+            inputdone=true
+        fi
+    done
+    inputdone=false
     input=""
     echo -ne "\nApply graysky's uarches patch? (y/n)\n"
     read -p "> " input
