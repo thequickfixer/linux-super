@@ -56,21 +56,34 @@ if [ $kernelver == "5.14.21" ]; then
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "n\Applying the BFQ/PDS scheduler patch"
-        $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
+        $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch
     elif [ $input == "n" ]; then
     fi
+    input=""
     echo -ne "\Apply graysky's uarches patch?\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "n\Applying the uarch patch"
-        $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
+        $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/graysky/*.patch
     elif [ $input == "n" ]; then
     fi
-    $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch
-    $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/graysky/*.patch
-    $loginman patch -p1 < $savedlocation/linux-super-patches/clearlinux/*.patch
-    echo -ne "Applying user patches"
-    $loginman patch -p1 < $savedlocation/linux-super-usr-patches-def/*.patch
+    input=""
+    echo -ne "\Apply clearlinux patches?\n"
+    read -p "> " input
+    if [ $input == "y" ] || [ $input == "" ]; then
+        echo -ne "n\Applying clearlinux patches"
+        $loginman patch -p1 < $savedlocation/linux-super-patches/clearlinux/*.patch
+    elif [ $input == "n" ]; then
+    fi
+    input=""
+    echo -ne "\Apply user patches?\n"
+    read -p "> " input
+    if [ $input == "y" ] || [ $input == "" ]; then
+        echo -ne "n\Applying user patches"
+        $loginman patch -p1 < $savedlocation/linux-super-usr-patches-def/*.patch
+    elif [ $input == "n" ]; then
+    fi
+    input=""
     echo -ne "Applied 5.14.21 specific patches"
 elif [ $kernelver != "5.14.21" ]; then
     #APPLY GENERAL PATCHES (Hopefully it works lol)
