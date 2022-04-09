@@ -118,9 +118,6 @@ elif [ $kernelver != "5.14.21" ]; then
         echo -ne "user selected no\n"
     fi
     input=""
-    $loginman patch -p1 < $savedlocation/linux-super-patches/*.patch
-    $loginman patch -p1 < $savedlocation/linux-super-patches/clearlinux/*.patch
-    $loginman patch -p1 < $savedlocation/linux-super-usr-patches/*.patch
     echo -ne "Applied general and user patches"
 fi
 
