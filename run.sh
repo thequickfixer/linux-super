@@ -97,15 +97,6 @@ if [ $kernelver == "5.14.21" ]; then
         echo -ne "user selected no\n"
     fi
     input=""
-    echo -ne "\nApply the AMDGPU volcanic islands patch for alder lake? (y/n)\n"
-    read -p "> " input
-    if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "\nAttempting to apply the AMDGPU (VI) patch"
-        $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/intel/amdgpu-disable-aspm-for-alder-lake.patch
-    elif [ $input == "n" ]; then
-        echo -ne "user selected no\n"
-    fi
-    input=""
     echo -ne "\nApply user patches? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
@@ -138,15 +129,6 @@ elif [ $kernelver != "5.14.21" ]; then
         for i in $savedlocation/linux-super-patches/clearlinux/*.patch; 
             do $loginman patch -p1 < $i; 
         done
-    elif [ $input == "n" ]; then
-        echo -ne "user selected no\n"
-    fi
-    input=""
-    echo -ne "\nApply the AMDGPU volcanic islands patch for alder lake? (y/n)\n"
-    read -p "> " input
-    if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "\nAttempting to apply the AMDGPU (VI) patch"
-        $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/intel/amdgpu-disable-aspm-for-alder-lake.patch
     elif [ $input == "n" ]; then
         echo -ne "user selected no\n"
     fi
