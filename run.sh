@@ -23,8 +23,6 @@ export KBUILD_CFLAGS= -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -s
 # CPPflags
 export KBUILD_CPPFLAGS= -D__KERNEL__ -O2 -g0 -ggdb0 -gstabs0 -fdevirtualize-speculatively -mtls-dialect=gnu2 -fuse-ld=bfd -ftree-loop-vectorize -fno-rounding-math -fexcess-precision=fast -fvect-cost-model=dynamic -fipa-pta -fipa-cp-clone -fgcse -fgcse-after-reload -fversion-loops-for-strides -fno-signaling-nans -fsched-pressure -fisolate-erroneous-paths-attribute -ftree-vectorize -fira-hoist-pressure -fira-loop-pressure -ftree-coalesce-vars -ftree-loop-distribution -floop-interchange -fivopts -fpredictive-commoning -fweb -frename-registers -fpeel-loops -faggressive-loop-optimizations -ftree-partial-pre -fstdarg-opt -pipe
 
-
-
 echo -ne "\nWelcome to the linux-super installer v$ver"
 
 while ! [ -x "$(command -v $loginman)" ]; do
