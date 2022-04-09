@@ -2,9 +2,10 @@
 
 Linux-super is a kernel patched for speed. This kernel isn't expected to be super secure, but secure to some degree. Expect missing things and bugs, if there is report them and or push a commit.
 
-# Known-bugs
+# Known-issues
 
 - Pressing anything besides prompted input will cause unknown issues
+- Only supports 5.xx.xx kernels
 
 # Credits
 
