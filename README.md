@@ -2,6 +2,11 @@
 
 Linux-super is a kernel patched for speed. This kernel isn't expected to be super secure, but secure to some degree. Expect missing things and bugs, if there is report them and or push a commit.
 
+# Credits
+
+TKG Linux kernel! Please check them out!
+- https://github.com/Frogging-Family/linux-tkg
+
 # Requirements
 
 - ```sudo``` / ```doas``` (for elevation)
