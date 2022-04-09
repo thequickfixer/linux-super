@@ -169,6 +169,7 @@ if [ $t_mb -gt "2048" ]; then
     echo -ne "\nUser has enough ram to generate the kernel, Above 2048MB"
     else
     echo -ne "\nWARNING: USER MAY NOT HAVE ENOUGH RAM! Below 2048MB\n"
+    read -p "Press enter to resume..."
 fi
 
 $loginman make menuconfig
