@@ -123,7 +123,7 @@ elif [ $kernelver != "5.14.21" ]; then
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "\nApplying the uarch patch"
-        for i in $savedlocation/linux-super-patches/*.patch; 
+        for i in $savedlocation/linux-super-patches/graysky/*.patch; 
             do $loginman patch -p1 < $i; 
         done
     elif [ $input == "n" ]; then
