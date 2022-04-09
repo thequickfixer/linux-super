@@ -7,7 +7,7 @@ kernelver=""
 physical_cpu_amount=`grep -c ^processor /proc/cpuinfo`
 
 # Other
-ver=0.1.7
+ver=0.1.8
 location=`pwd`
 savedlocation=$location
 kernelname=-super
@@ -91,6 +91,17 @@ if [ $kernelver == "5.14.21" ]; then
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "\nApplying clearlinux patches"
         for i in $savedlocation/linux-super-patches/clearlinux/*.patch; 
+            do $loginman patch -p1 < $i; 
+        done
+    elif [ $input == "n" ]; then
+        echo -ne "user selected no\n"
+    fi
+    input=""
+    echo -ne "\nAttempt to apply network IO patches? (y/n)\n"
+    read -p "> " input
+    if [ $input == "y" ] || [ $input == "" ]; then
+        echo -ne "\nAttempting to apply network IO patches..."
+        for i in $savedlocation/linux-super-patches/5.14/axboe/*.patch; 
             do $loginman patch -p1 < $i; 
         done
     elif [ $input == "n" ]; then
