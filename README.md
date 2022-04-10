@@ -58,8 +58,5 @@ Include patches in that folder for the kernel.
 The procedure is simple at first:
 
 ```
-chmod +x run.sh
-```
-```
 ./run.sh
 ```
