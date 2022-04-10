@@ -50,20 +50,21 @@ while [[ !(-f "linux-$kernelver.tar.xz") ]]; do #while the file does not exist o
     fi
 done
 
-while [ $inputdone != "true" ]; do
-    if [ ! -d "/usr/src/linux-$kernelver" ]; then
-    echo -ne "\nPerform extraction of linux-$kernelver\n(y or n)?\n"
-    read -p "> " input
-    if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "\nPerforming extraction..."
-        $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
-        inputdone="true"
-    elif [ $input == "n" ]; then
-        echo -ne "Exiting..\n"
-        inputdone="true"
-        exit
-    fi
-done
+if [ ! -d "/usr/src/linux-$kernelver" ]; then
+    while [ $inputdone != "true" ]; do
+        echo -ne "\nPerform extraction of linux-$kernelver\n(y or n)?\n"
+        read -p "> " input
+        if [ $input == "y" ] || [ $input == "" ]; then
+            echo -ne "\nPerforming extraction..."
+            $loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/
+            inputdone="true"
+        elif [ $input == "n" ]; then
+            echo -ne "Exiting..\n"
+            inputdone="true"
+            exit
+        fi
+    done
+fi
 clr_input
 
 echo -ne "\nResuming this will:"
