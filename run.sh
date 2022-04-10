@@ -75,11 +75,24 @@ cd /usr/src/linux-$kernelver
 if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
     while [ $inputdone != "true" ]; do
-        echo -ne "\nApply the BFQ/PDS scheduler patch? (y/n)\n"
+        echo -ne "\nApply the BMQ/PDS scheduler patch? (y/n)\n"
         read -p "> " input
         if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nApplying the BFQ/PDS scheduler patch"
-            for i in $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch; 
+            echo -ne "\nApplying the BMQ/PDS scheduler patch"
+            $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/tkg/prjc_v5.14-r3.patch
+            inputdone="true"
+        elif [ $input == "n" ]; then
+            echo -ne "user selected no\n"
+            inputdone="true"
+        fi
+    done
+    clr_input
+    while [ $inputdone != "true" ]; do
+        echo -ne "\nApply the TkG patches? (y/n)\n"
+        read -p "> " input
+        if [ $input == "y" ] || [ $input == "" ]; then
+            echo -ne "\nApplying the TkG patches"
+            for i in $savedlocation/linux-super-patches/5.14/tkg/*.patch; 
                 do $loginman patch -p1 < $i; 
             done
             inputdone="true"
