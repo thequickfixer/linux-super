@@ -102,40 +102,52 @@ if [ $kernelver == "5.14.21" ]; then
         fi
     done
     clr_input
-    echo -ne "\nApply clearlinux patches? (y/n)\n"
-    read -p "> " input
-    if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "\nApplying clearlinux patches"
-        for i in $savedlocation/linux-super-patches/clearlinux/*.patch; 
-            do $loginman patch -p1 < $i; 
-        done
-    elif [ $input == "n" ]; then
-        echo -ne "user selected no\n"
-    fi
-    input=""
-    echo -ne "\nAttempt to apply high resolution timer patches? (y/n)\n"
-    read -p "> " input
-    if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "\nAttempting to apply high resoultion timer patches..."
-        for i in $savedlocation/linux-super-patches/5.14/ck-hrtimer/*.patch; 
-            do $loginman patch -p1 < $i; 
-        done
-    elif [ $input == "n" ]; then
-        echo -ne "user selected no\n"
-    fi
-    input=""
-    echo -ne "\nApply user patches? (y/n)\n"
-    read -p "> " input
-    if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "\nApplying user patches"
-        for i in $savedlocation/linux-super-usr-patches-def/*.patch; 
-            do $loginman patch -p1 < $i; 
-        done
-    elif [ $input == "n" ]; then
-        echo -ne "user selected no\n"
-    fi
-    input=""
-    echo -ne "Applied 5.14.21 specific patches"
+    while [ $inputdone != "true" ]; do
+        echo -ne "\nApply clearlinux patches? (y/n)\n"
+        read -p "> " input
+        if [ $input == "y" ] || [ $input == "" ]; then
+            echo -ne "\nApplying clearlinux patches"
+            for i in $savedlocation/linux-super-patches/clearlinux/*.patch; 
+                do $loginman patch -p1 < $i; 
+            done
+            inputdone="true"
+        elif [ $input == "n" ]; then
+            echo -ne "user selected no\n"
+            inputdone="true"
+        fi
+    done
+    clr_input
+    while [ $inputdone != "true" ]; do
+        echo -ne "\nAttempt to apply high resolution timer patches? (y/n)\n"
+        read -p "> " input
+        if [ $input == "y" ] || [ $input == "" ]; then
+            echo -ne "\nAttempting to apply high resoultion timer patches..."
+            for i in $savedlocation/linux-super-patches/5.14/ck-hrtimer/*.patch; 
+                do $loginman patch -p1 < $i; 
+            done
+            inputdone="true"
+        elif [ $input == "n" ]; then
+            echo -ne "user selected no\n"
+            inputdone="true"
+        fi
+    done
+    clr_input
+    while [ $inputdone != "true" ]; do
+        echo -ne "\nApply user patches? (y/n)\n"
+        read -p "> " input
+        if [ $input == "y" ] || [ $input == "" ]; then
+            echo -ne "\nApplying user patches"
+            for i in $savedlocation/linux-super-usr-patches-def/*.patch; 
+                do $loginman patch -p1 < $i; 
+            done
+            inputdone="true"
+        elif [ $input == "n" ]; then
+            echo -ne "user selected no\n"
+            inputdone="true"
+        fi
+    done
+    clr_input
+    echo -ne "\nApplied 5.14.xx specific patches"
 elif [ $kernelver != "5.14.21" ]; then
     #APPLY GENERAL PATCHES (Hopefully it works lol)
     echo -ne "\nApply general patches (y/n)\n"
