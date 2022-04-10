@@ -79,7 +79,7 @@ if [ $kernelver == "5.14.21" ]; then
         read -p "> " input
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nApplying the BMQ/PDS scheduler patch"
-            $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/tkg/prjc_v5.14-r3.patch
+            $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/tkg/projectc/prjc_v5.14-r3.patch
             inputdone="true"
         elif [ $input == "n" ]; then
             echo -ne "user selected no\n"
