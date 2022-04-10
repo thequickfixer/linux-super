@@ -21,6 +21,7 @@ TkG Linux kernel! Please check them out!
 - ```zstd``` (to increase compatibility)
 - ```tar``` (to extract)
 - ```grub``` (required to be installed)
+- ```wget``` (required but will be removed soon)
 - ```gcc``` (required)
 
 # Setting it all up (default kernel)
