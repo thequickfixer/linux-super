@@ -6,6 +6,7 @@ Linux-super is a kernel patched for speed. This kernel isn't expected to be supe
 
 - Pressing anything besides prompted input will cause unknown issues
 - Only supports ```5.xx.xx``` kernels
+- Will use git soon!
 
 # Credits
 
