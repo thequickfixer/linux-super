@@ -25,6 +25,13 @@ export KBUILD_CFLAGS="-fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -s
 # CPPflags
 export KBUILD_CPPFLAGS="-D__KERNEL__ -g0 -ggdb0 -gstabs0 -fdevirtualize-speculatively -mtls-dialect=gnu2 -ftree-loop-vectorize -fno-rounding-math -fexcess-precision=fast -fvect-cost-model=dynamic -fipa-pta -fipa-cp-clone -fgcse -fgcse-after-reload -fversion-loops-for-strides -fno-signaling-nans -fsched-pressure -fisolate-erroneous-paths-attribute -ftree-vectorize -fira-hoist-pressure -fira-loop-pressure -ftree-coalesce-vars -ftree-loop-distribution -floop-interchange -fivopts -fpredictive-commoning -fweb -frename-registers -fpeel-loops -faggressive-loop-optimizations -ftree-partial-pre -fstdarg-opt -pipe"
 
+# Functions
+# Clear input
+function clr_input() {
+    inputdone=false
+    input=""
+}
+
 echo -ne "\nWelcome to the linux-super installer v$ver"
 
 while ! [ -x "$(command -v $loginman)" ]; do
@@ -65,9 +72,9 @@ read -p "Press enter to resume..."
 cd /usr/src/linux-$kernelver
 if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
-    echo -ne "\nApply the BFQ/PDS scheduler patch? (y/n)\n"
-    read -p "> " input
     while ! [ "$inputdone" ]; do
+        echo -ne "\nApply the BFQ/PDS scheduler patch? (y/n)\n"
+        read -p "> " input
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nApplying the BFQ/PDS scheduler patch"
             for i in $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch; 
@@ -79,19 +86,22 @@ if [ $kernelver == "5.14.21" ]; then
             inputdone=true
         fi
     done
-    inputdone=false
-    input=""
-    echo -ne "\nApply graysky's uarches patch? (y/n)\n"
-    read -p "> " input
-    if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "\nApplying the uarch patch"
-        for i in $savedlocation/linux-super-patches/5.14/graysky/*.patch; 
-            do $loginman patch -p1 < $i; 
-        done
-    elif [ $input == "n" ]; then
-        echo -ne "user selected no\n"
-    fi
-    input=""
+    clr_input();
+    while ! [ "$inputdone" ]; do
+        echo -ne "\nApply graysky's uarches patch? (y/n)\n"
+        read -p "> " input
+        if [ $input == "y" ] || [ $input == "" ]; then
+            echo -ne "\nApplying the uarch patch"
+            for i in $savedlocation/linux-super-patches/5.14/graysky/*.patch; 
+                do $loginman patch -p1 < $i; 
+            done
+            inputdone=true
+        elif [ $input == "n" ]; then
+            echo -ne "user selected no\n"
+            inputdone=true
+        fi
+    done
+    clr_input();
     echo -ne "\nApply clearlinux patches? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
