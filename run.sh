@@ -2,7 +2,7 @@
 
 # Variables
 input=""
-inputdone=false
+inputdone="false"
 loginman=""
 kernelver=""
 physical_cpu_amount=`grep -c ^processor /proc/cpuinfo`
@@ -28,7 +28,7 @@ export KBUILD_CPPFLAGS="-D__KERNEL__ -g0 -ggdb0 -gstabs0 -fdevirtualize-speculat
 # Functions
 # Clear input
 function clr_input() {
-    inputdone=false
+    inputdone="false"
     input=""
 }
 
@@ -72,7 +72,7 @@ read -p "Press enter to resume..."
 cd /usr/src/linux-$kernelver
 if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
-    while ! [ "$inputdone" ]; do
+    while [ $inputdone != "true" ]; do
         echo -ne "\nApply the BFQ/PDS scheduler patch? (y/n)\n"
         read -p "> " input
         if [ $input == "y" ] || [ $input == "" ]; then
@@ -80,14 +80,14 @@ if [ $kernelver == "5.14.21" ]; then
             for i in $savedlocation/linux-super-patches/5.14/alfred-chen/*.patch; 
                 do $loginman patch -p1 < $i; 
             done
-            inputdone=true
+            inputdone="true"
         elif [ $input == "n" ]; then
             echo -ne "user selected no\n"
-            inputdone=true
+            inputdone="true"
         fi
     done
-    clr_input();
-    while ! [ "$inputdone" ]; do
+    clr_input
+    while [ $inputdone != "true" ]; do
         echo -ne "\nApply graysky's uarches patch? (y/n)\n"
         read -p "> " input
         if [ $input == "y" ] || [ $input == "" ]; then
@@ -95,13 +95,13 @@ if [ $kernelver == "5.14.21" ]; then
             for i in $savedlocation/linux-super-patches/5.14/graysky/*.patch; 
                 do $loginman patch -p1 < $i; 
             done
-            inputdone=true
+            inputdone="true"
         elif [ $input == "n" ]; then
             echo -ne "user selected no\n"
-            inputdone=true
+            inputdone="true"
         fi
     done
-    clr_input();
+    clr_input
     echo -ne "\nApply clearlinux patches? (y/n)\n"
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
