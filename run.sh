@@ -79,7 +79,7 @@ if [ $kernelver == "5.14.21" ]; then
         read -p "> " input
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nApplying the BMQ/PDS scheduler patch"
-            $loginman patch -p1 < $savedlocation/linux-super-patches/5.14/tkg/projectc/prjc_v5.14-r3.patch
+            $loginman patch -N -p1 < $savedlocation/linux-super-patches/5.14/tkg/projectc/prjc_v5.14-r3.patch
             inputdone="true"
         elif [ $input == "n" ]; then
             echo -ne "user selected no\n"
@@ -93,7 +93,7 @@ if [ $kernelver == "5.14.21" ]; then
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nApplying the TkG patches"
             for i in $savedlocation/linux-super-patches/5.14/tkg/*.patch; 
-                do $loginman patch -p1 < $i; 
+                do $loginman patch -N -p1 < $i; 
             done
             inputdone="true"
         elif [ $input == "n" ]; then
@@ -108,7 +108,7 @@ if [ $kernelver == "5.14.21" ]; then
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nApplying the uarch patch"
             for i in $savedlocation/linux-super-patches/5.14/graysky/*.patch; 
-                do $loginman patch -p1 < $i; 
+                do $loginman patch -N -p1 < $i; 
             done
             inputdone="true"
         elif [ $input == "n" ]; then
@@ -123,7 +123,7 @@ if [ $kernelver == "5.14.21" ]; then
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nApplying clearlinux patches"
             for i in $savedlocation/linux-super-patches/clearlinux/*.patch; 
-                do $loginman patch -p1 < $i; 
+                do $loginman patch -N -p1 < $i; 
             done
             inputdone="true"
         elif [ $input == "n" ]; then
@@ -138,7 +138,7 @@ if [ $kernelver == "5.14.21" ]; then
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nAttempting to apply high resoultion timer patches..."
             for i in $savedlocation/linux-super-patches/5.14/ck-hrtimer/*.patch; 
-                do $loginman patch -p1 < $i; 
+                do $loginman patch -N -p1 < $i; 
             done
             inputdone="true"
         elif [ $input == "n" ]; then
@@ -153,7 +153,7 @@ if [ $kernelver == "5.14.21" ]; then
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nApplying user patches"
             for i in $savedlocation/linux-super-usr-patches-def/*.patch; 
-                do $loginman patch -p1 < $i; 
+                do $loginman patch -N -p1 < $i; 
             done
             inputdone="true"
         elif [ $input == "n" ]; then
@@ -171,7 +171,7 @@ elif [ $kernelver != "5.14.21" ]; then
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nApplying the uarch patch"
             for i in $savedlocation/linux-super-patches/graysky/*.patch; 
-                do $loginman patch -p1 < $i; 
+                do $loginman patch -N -p1 < $i; 
             done
             inputdone="true"
         elif [ $input == "n" ]; then
@@ -186,7 +186,7 @@ elif [ $kernelver != "5.14.21" ]; then
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nApplying clearlinux patches"
             for i in $savedlocation/linux-super-patches/clearlinux/*.patch; 
-                do $loginman patch -p1 < $i; 
+                do $loginman patch -N -p1 < $i; 
             done
             inputdone="true"
         elif [ $input == "n" ]; then
@@ -201,7 +201,7 @@ elif [ $kernelver != "5.14.21" ]; then
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nAttempting to apply high resoultion timer patches..."
             for i in $savedlocation/linux-super-patches/5.14/ck-hrtimer/*.patch; 
-                do $loginman patch -p1 < $i; 
+                do $loginman patch -N -p1 < $i; 
             done
             inputdone="true"
         elif [ $input == "n" ]; then
@@ -216,7 +216,7 @@ elif [ $kernelver != "5.14.21" ]; then
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nApplying user patches"
             for i in $savedlocation/linux-super-usr-patches/*.patch; 
-                do $loginman patch -p1 < $i; 
+                do $loginman patch -N -p1 < $i; 
             done
             inputdone="true"
         elif [ $input == "n" ]; then
