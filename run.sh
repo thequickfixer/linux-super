@@ -16,6 +16,9 @@ WORKDIR=$location/linux-super-work
 validNum='^[0-9]+$'
 t_mb=$(free -m | awk '/^Mem:/{print $2}')
 
+# Arrays
+declare -a vaild_kernel_514=("5.14.00" "5.14.01" "5.14.02" "5.14.03" "5.14.04" "5.14.05" "5.14.06" "5.14.07" "5.14.08" "5.14.09" "5.14.10" "5.14.11" "5.14.12" "5.14.13" "5.14.14" "5.14.15" "5.14.16" "5.14.17" "5.14.18" "5.14.19" "5.14.20" "5.14.21")
+
 # Exported variables
 # GCC commands go here!
 # Assembly flags
@@ -30,7 +33,7 @@ export KBUILD_CPPFLAGS="-D__KERNEL__ -g0 -ggdb0 -gstabs0 -fdevirtualize-speculat
 function clr_input() {
     inputdone="false"
     input=""
-}
+}  
 
 echo -ne "\nWelcome to the linux-super installer v$ver"
 
@@ -89,7 +92,7 @@ echo -ne "\n- Add patches\n"
 read -p "Press enter to resume..."
 
 cd /usr/src/linux-$kernelver
-if [ $kernelver == "5.14.21" ]; then
+if [ $kernelver == $vaild_kernel_514 ]; then
     #TODO: apply 5.14.21-specific patches
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply the BMQ/PDS scheduler patch? (y/n)\n"
