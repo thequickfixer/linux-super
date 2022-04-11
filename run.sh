@@ -183,7 +183,7 @@ if [ $kernelver == $vaild_kernel_514 ]; then
     done
     clr_input
     echo -ne "\nApplied 5.14.xx specific patches"
-elif [ $kernelver != "5.14.21" ]; then
+elif [ $kernelver != $vaild_kernel_514 ]; then
     #APPLY GENERAL PATCHES (Hopefully it works lol)
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply uarch patches? (y/n)\n"
