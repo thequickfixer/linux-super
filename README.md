@@ -6,8 +6,9 @@ Linux-super is a modified ```5.14.xx``` kernel patched for speed. This kernel is
 - This kernel was also pushed out to the public early.
 - This kernel will be updated frequenently throughout each day.
 - This kernel is for advanced users only.
+- Enabling debugging causes errors.
 
-We recommend linux ```5.14.21```, this will appear in GRUB under advanced options as ```linux-5.14.21```.
+We recommend linux ```5.14.21``` as there are more options for the kernel. The kernel will appear in GRUB under advanced options labeled as ```linux-5.14.21```.
 
 # Known-issues
 

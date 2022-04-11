@@ -102,6 +102,19 @@ if [[ $kernelver =~ ^(5.14.21|5.14.20|5.14.19|5.14.18|5.14.17|5.14.16|5.14.15|5.
     #TODO: apply 5.14.21-specific patches
     gnuver="-std=gnu89"
     while [ $inputdone != "true" ]; do
+        echo -ne "\nApply the GCC optimizations patch? (y/n)\n"
+        read -p "> " input
+        if [ $input == "y" ] || [ $input == "" ]; then
+            echo -ne "\nApplying the GCC optimization patch"
+            $loginman patch -N -p1 < $savedlocation/linux-super-patches/5.14/makefile/makefile-1.patch Makefile
+            inputdone="true"
+        elif [ $input == "n" ]; then
+            echo -ne "user selected no\n"
+            inputdone="true"
+        fi
+    done
+    clr_input
+    while [ $inputdone != "true" ]; do
         echo -ne "\nApply the BMQ/PDS scheduler patch? (y/n)\n"
         read -p "> " input
         if [ $input == "y" ] || [ $input == "" ]; then

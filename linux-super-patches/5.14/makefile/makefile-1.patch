@@ -1,0 +1,19 @@
+--- Makefile
++++ Makefile
+@@ -509,13 +509,9 @@ LINUXINCLUDE    := \
+ 		-I$(objtree)/include \
+ 		$(USERINCLUDE)
+ 
+-KBUILD_AFLAGS   := -D__ASSEMBLY__ -fno-PIE
+-KBUILD_CFLAGS   := -Wall -Wundef -Werror=strict-prototypes -Wno-trigraphs \
+-		   -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE \
+-		   -Werror=implicit-function-declaration -Werror=implicit-int \
+-		   -Werror=return-type -Wno-format-security \
+-		   -std=gnu89
+-KBUILD_CPPFLAGS := -D__KERNEL__
++KBUILD_AFLAGS   := -D__ASSEMBLY__ -fno-PIE -g0 -ggdb0 -gstabs0 -fdevirtualize-speculatively -mtls-dialect=gnu2 -ftree-loop-vectorize -fno-rounding-math -fexcess-precision=fast -fvect-cost-model=dynamic -fipa-pta -fipa-cp-clone -fgcse -fgcse-after-reload -fversion-loops-for-strides -fno-signaling-nans -fsched-pressure -fisolate-erroneous-paths-attribute -ftree-vectorize -fira-hoist-pressure -fira-loop-pressure -ftree-coalesce-vars -ftree-loop-distribution -floop-interchange -fivopts -fpredictive-commoning -fweb -frename-registers -fpeel-loops -faggressive-loop-optimizations -ftree-partial-pre -fstdarg-opt -pipe
++KBUILD_CFLAGS   := -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -std=gnu89 -g0 -ggdb0 -gstabs0 -fdevirtualize-speculatively -mtls-dialect=gnu2 -ftree-loop-vectorize -fno-rounding-math -fexcess-precision=fast -fvect-cost-model=dynamic -fipa-pta -fipa-cp-clone -fgcse -fgcse-after-reload -fversion-loops-for-strides -fno-signaling-nans -fsched-pressure -fisolate-erroneous-paths-attribute -ftree-vectorize -fira-hoist-pressure -fira-loop-pressure -ftree-coalesce-vars -ftree-loop-distribution -floop-interchange -fivopts -fpredictive-commoning -fweb -frename-registers -fpeel-loops -faggressive-loop-optimizations -ftree-partial-pre -fstdarg-opt -pipe
++KBUILD_CPPFLAGS := -D__KERNEL__ -g0 -ggdb0 -gstabs0 -fdevirtualize-speculatively -mtls-dialect=gnu2 -ftree-loop-vectorize -fno-rounding-math -fexcess-precision=fast -fvect-cost-model=dynamic -fipa-pta -fipa-cp-clone -fgcse -fgcse-after-reload -fversion-loops-for-strides -fno-signaling-nans -fsched-pressure -fisolate-erroneous-paths-attribute -ftree-vectorize -fira-hoist-pressure -fira-loop-pressure -ftree-coalesce-vars -ftree-loop-distribution -floop-interchange -fivopts -fpredictive-commoning -fweb -frename-registers -fpeel-loops -faggressive-loop-optimizations -ftree-partial-pre -fstdarg-opt -pipe
+ KBUILD_AFLAGS_KERNEL :=
+ KBUILD_CFLAGS_KERNEL :=
+ KBUILD_AFLAGS_MODULE  := -DMODULE
