@@ -64,7 +64,22 @@ Include patches in that folder for the kernel.
 
 # Installation
 
-The procedure is simple at first:
+Setting up grub beforehand:
+
+```
+sudo nano /etc/default/grub
+```
+Ctrl+w to find this:
+
+```GRUB_CMDLINE_LINUX_DEFAULT```
+
+Un-comment (#) it out and replace it with this:
+
+```
+GRUB_CMDLINE_LINUX_DEFAULT="quiet audit=0 loglevel=0 no_debug_objects"
+```
+
+Then run the installer:
 
 ```
 ./run.sh
