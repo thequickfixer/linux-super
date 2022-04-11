@@ -252,6 +252,7 @@ if [ $t_mb -gt "2048" ]; then
     read -p "Press enter to resume..."
 fi
 
+$loginman cp $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
 $loginman make menuconfig
 
 echo -ne "\nWARNING! Resuming this will:"
