@@ -32,7 +32,7 @@ Xanmod!
 Graysky for his uarch patch!
 - https://github.com/graysky2/kernel_compiler_patch
 
-# Setting it all up (default kernel)
+# Setting the patches (default kernel) (optional)
 
 Include personal patches for the default kernel version ```(5.14.21)``` as follows:
 
@@ -47,7 +47,7 @@ mkdir linux-super-usr-patches-def
 ```
 Include patches in that folder for the ```(5.14.21)``` kernel
 
-# Setting it all up (alternative kernel)
+# Setting the patches (alternative kernel) (optional)
 
 Include personal patches for the alternative kernel as follows:
 
