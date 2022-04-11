@@ -48,7 +48,7 @@ while [ $inputdone != "true" ]; do
     read -p "> " input
     if [ $input == "y" ] || [ $input == "" ]; then
         echo -ne "\nEnabling debugging for script."
-        debug_make="-N"
+        debug_make="-n"
         inputdone="true"
     elif [ $input == "n" ]; then
         echo -ne "\nuser selected no"
@@ -288,7 +288,7 @@ fi
 
 $loginman cp $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
 $loginman make menuconfig
-$loginman make oldconfig && make prepare
+$loginman make oldconfig && $loginman make prepare
 
 echo -ne "\nWARNING! Resuming this will:"
 echo -ne "\n- build the kernel"
