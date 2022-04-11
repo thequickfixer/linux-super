@@ -14,10 +14,10 @@ TkG Linux kernel! Please check them out!
 - https://github.com/Frogging-Family/linux-tkg
 
 Xanmod!
-- https://github.com/graysky2/kernel_compiler_patch
+- https://github.com/xanmod/linux-patches
 
 Graysky for his uarch patch!
-- https://github.com/xanmod/linux-patches
+- https://github.com/graysky2/kernel_compiler_patch
 
 # Requirements
 
