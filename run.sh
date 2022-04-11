@@ -89,7 +89,7 @@ echo -ne "\n- Add patches\n"
 read -p "Press enter to resume..."
 
 cd /usr/src/linux-$kernelver
-if [ $kernelver == "5.14.21" ]; then
+if [ $kernelver == "5.14.21" ] || [ $kernelver == "5.14.20" ] || [ $kernelver == "5.14.19" ] || [ $kernelver == "5.14.18" ] || [ $kernelver == "5.14.17" ] || [ $kernelver == "5.14.16" ] || [ $kernelver == "5.14.15" ] || [ $kernelver == "5.14.14" ] || [ $kernelver == "5.14.13" ] || [ $kernelver == "5.14.12" ] || [ $kernelver == "5.14.11" ] || [ $kernelver == "5.14.10" ] || [ $kernelver == "5.14.9" ] || [ $kernelver == "5.14.8" ] || [ $kernelver == "5.14.7" ] || [ $kernelver == "5.14.6" ] || [ $kernelver == "5.14.5" ] || [ $kernelver == "5.14.4" ] || [ $kernelver == "5.14.3" ] || [ $kernelver == "5.14.2" ] || [ $kernelver == "5.14.1" ]; then
     #TODO: apply 5.14.21-specific patches
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply the BMQ/PDS scheduler patch? (y/n)\n"
