@@ -273,7 +273,7 @@ fi
 
 #Let the user know they might not have enough ram <2GB
 if [ $t_mb -gt "2048" ]; then
-    echo -ne "\nUser has enough ram to generate the kernel, Above 2048MB"
+    echo -ne "\nUser has enough ram to generate the kernel, Above 2048MB\n"
     else
     echo -ne "\nWARNING: USER MAY NOT HAVE ENOUGH RAM! Below 2048MB\n"
     read -p "Press enter to resume..."
@@ -281,10 +281,13 @@ fi
 
 if [ ! -d "/usr/src/linux-$kernelver/.config" ]; then
     $loginman cp $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
+    $loginman make menuconfig
+    $loginman make oldconfig && $loginman make prepare
 fi
 
-$loginman make menuconfig
-$loginman make oldconfig && $loginman make prepare
+if [ -d "/usr/src/linux-$kernelver/.config" ]; then
+    $loginman make menuconfig
+fi
 
 echo -ne "\nWARNING! Resuming this will:"
 echo -ne "\n- build the kernel"
