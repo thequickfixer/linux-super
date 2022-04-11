@@ -7,9 +7,8 @@ This kernel was also pushed out to the public early.
 
 # Known-issues
 
-- Only supports ```5.xx.xx``` kernels
+- Supports only ```5.xx.xx``` kernels
 - Will use git soon!
-- Does not support ```5.18+``` kernels at the moment
 
 # Requirements
 
