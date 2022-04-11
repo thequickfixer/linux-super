@@ -4,6 +4,7 @@ Linux-super is a modified ```5.14.xx``` kernel patched for speed. This kernel is
 
 This kernel doesn't have hardening to certain extents.
 This kernel was also pushed out to the public early.
+This kernel is for advanced users only.
 
 We recommend linux ```5.14.21```, this will appear in GRUB under advanced options as ```linux-5.14.21```.
 
