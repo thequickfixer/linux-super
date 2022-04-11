@@ -54,6 +54,7 @@ while [ $inputdone != "true" ]; do
         inputdone="true"
     fi
 done
+clr_input
 
 mkdir linux-super-work
 cd $WORKDIR
