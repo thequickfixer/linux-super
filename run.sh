@@ -14,7 +14,7 @@ gnuver=""
 
 
 # Other
-ver=0.2.3.2
+ver=0.2.3.3
 location=`pwd`
 savedlocation=$location
 kernelname=-super
