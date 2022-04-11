@@ -279,14 +279,14 @@ if [ $t_mb -gt "2048" ]; then
     read -p "Press enter to resume..."
 fi
 
-if [ ! -d "/usr/src/linux-$kernelver/.config" ]; then
+if [ -d -a "/usr/src/linux-$kernelver/.config" ]; then
+    $loginman make menuconfig
+fi
+
+if [ ! -d -a "/usr/src/linux-$kernelver/.config" ]; then
     $loginman cp $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
     $loginman make menuconfig
     $loginman make oldconfig && $loginman make prepare
-fi
-
-if [ -d "/usr/src/linux-$kernelver/.config" ]; then
-    $loginman make menuconfig
 fi
 
 echo -ne "\nWARNING! Resuming this will:"
