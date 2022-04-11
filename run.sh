@@ -16,9 +16,6 @@ WORKDIR=$location/linux-super-work
 validNum='^[0-9]+$'
 t_mb=$(free -m | awk '/^Mem:/{print $2}')
 
-# Arrays
-declare -a vaild_kernel_514=("5.14.00" "5.14.01" "5.14.02" "5.14.03" "5.14.04" "5.14.05" "5.14.06" "5.14.07" "5.14.08" "5.14.09" "5.14.10" "5.14.11" "5.14.12" "5.14.13" "5.14.14" "5.14.15" "5.14.16" "5.14.17" "5.14.18" "5.14.19" "5.14.20" "5.14.21")
-
 # Exported variables
 # GCC commands go here!
 # Assembly flags
@@ -92,7 +89,7 @@ echo -ne "\n- Add patches\n"
 read -p "Press enter to resume..."
 
 cd /usr/src/linux-$kernelver
-if [ $kernelver == "${vaild_kernel_514[*]}" ]; then
+if [ $kernelver == "5.14.21" ]; then
     #TODO: apply 5.14.21-specific patches
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply the BMQ/PDS scheduler patch? (y/n)\n"
@@ -183,7 +180,7 @@ if [ $kernelver == "${vaild_kernel_514[*]}" ]; then
     done
     clr_input
     echo -ne "\nApplied 5.14.xx specific patches"
-elif [ $kernelver != "${vaild_kernel_514[*]}" ]; then
+elif [ $kernelver != "5.14.21" ]; then
     #APPLY GENERAL PATCHES (Hopefully it works lol)
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply uarch patches? (y/n)\n"
