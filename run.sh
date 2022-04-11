@@ -6,10 +6,10 @@ inputdone="false"
 loginman=""
 kernelver=""
 debug_make=""
-# VV for 5.18+ kernels
-gnuver=""
 physical_cpu_amount=`grep -c ^processor /proc/cpuinfo`
 common_flags="-g0 -ggdb0 -gstabs0 -fdevirtualize-speculatively -mtls-dialect=gnu2 -ftree-loop-vectorize -fno-rounding-math -fexcess-precision=fast -fvect-cost-model=dynamic -fipa-pta -fipa-cp-clone -fgcse -fgcse-after-reload -fversion-loops-for-strides -fno-signaling-nans -fsched-pressure -fisolate-erroneous-paths-attribute -ftree-vectorize -fira-hoist-pressure -fira-loop-pressure -ftree-coalesce-vars -ftree-loop-distribution -floop-interchange -fivopts -fpredictive-commoning -fweb -frename-registers -fpeel-loops -faggressive-loop-optimizations -ftree-partial-pre -fstdarg-opt -pipe"
+# VV for 5.18+ kernels
+gnuver=""
 
 # Other
 ver=0.2.3.2
