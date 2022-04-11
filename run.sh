@@ -5,10 +5,12 @@ input=""
 inputdone="false"
 loginman=""
 kernelver=""
+# VV for 5.18+ kernels
+gnuver=""
 physical_cpu_amount=`grep -c ^processor /proc/cpuinfo`
 
 # Other
-ver=0.2.2
+ver=0.2.3
 location=`pwd`
 savedlocation=$location
 kernelname=-super
@@ -21,7 +23,7 @@ t_mb=$(free -m | awk '/^Mem:/{print $2}')
 # Assembly flags
 export KBUILD_AFLAGS="-D__ASSEMBLY__ -g0 -ggdb0 -gstabs0 -fdevirtualize-speculatively -mtls-dialect=gnu2 -ftree-loop-vectorize -fno-rounding-math -fexcess-precision=fast -fvect-cost-model=dynamic -fipa-pta -fipa-cp-clone -fgcse -fgcse-after-reload -fversion-loops-for-strides -fno-signaling-nans -fsched-pressure -fisolate-erroneous-paths-attribute -ftree-vectorize -fira-hoist-pressure -fira-loop-pressure -ftree-coalesce-vars -ftree-loop-distribution -floop-interchange -fivopts -fpredictive-commoning -fweb -frename-registers -fpeel-loops -faggressive-loop-optimizations -ftree-partial-pre -fstdarg-opt -pipe"
 # Cflags
-export KBUILD_CFLAGS="-fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -std=gnu89 -g0 -ggdb0 -gstabs0 -fdevirtualize-speculatively -mtls-dialect=gnu2 -fuse-ld=bfd -ftree-loop-vectorize -fno-rounding-math -fexcess-precision=fast -fvect-cost-model=dynamic -fipa-pta -fipa-cp-clone -fgcse -fgcse-after-reload -fversion-loops-for-strides -fno-signaling-nans -fsched-pressure -fisolate-erroneous-paths-attribute -ftree-vectorize -fira-hoist-pressure -fira-loop-pressure -ftree-coalesce-vars -ftree-loop-distribution -floop-interchange -fivopts -fpredictive-commoning -fweb -frename-registers -fpeel-loops -faggressive-loop-optimizations -ftree-partial-pre -fstdarg-opt -pipe"
+export KBUILD_CFLAGS="-fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE $gnuver -g0 -ggdb0 -gstabs0 -fdevirtualize-speculatively -mtls-dialect=gnu2 -fuse-ld=bfd -ftree-loop-vectorize -fno-rounding-math -fexcess-precision=fast -fvect-cost-model=dynamic -fipa-pta -fipa-cp-clone -fgcse -fgcse-after-reload -fversion-loops-for-strides -fno-signaling-nans -fsched-pressure -fisolate-erroneous-paths-attribute -ftree-vectorize -fira-hoist-pressure -fira-loop-pressure -ftree-coalesce-vars -ftree-loop-distribution -floop-interchange -fivopts -fpredictive-commoning -fweb -frename-registers -fpeel-loops -faggressive-loop-optimizations -ftree-partial-pre -fstdarg-opt -pipe"
 # CPPflags
 export KBUILD_CPPFLAGS="-D__KERNEL__ -g0 -ggdb0 -gstabs0 -fdevirtualize-speculatively -mtls-dialect=gnu2 -ftree-loop-vectorize -fno-rounding-math -fexcess-precision=fast -fvect-cost-model=dynamic -fipa-pta -fipa-cp-clone -fgcse -fgcse-after-reload -fversion-loops-for-strides -fno-signaling-nans -fsched-pressure -fisolate-erroneous-paths-attribute -ftree-vectorize -fira-hoist-pressure -fira-loop-pressure -ftree-coalesce-vars -ftree-loop-distribution -floop-interchange -fivopts -fpredictive-commoning -fweb -frename-registers -fpeel-loops -faggressive-loop-optimizations -ftree-partial-pre -fstdarg-opt -pipe"
 
@@ -91,6 +93,7 @@ read -p "Press enter to resume..."
 cd /usr/src/linux-$kernelver
 if [ $kernelver == "5.14.21" ] || [ $kernelver == "5.14.20" ] || [ $kernelver == "5.14.19" ] || [ $kernelver == "5.14.18" ] || [ $kernelver == "5.14.17" ] || [ $kernelver == "5.14.16" ] || [ $kernelver == "5.14.15" ] || [ $kernelver == "5.14.14" ] || [ $kernelver == "5.14.13" ] || [ $kernelver == "5.14.12" ] || [ $kernelver == "5.14.11" ] || [ $kernelver == "5.14.10" ] || [ $kernelver == "5.14.9" ] || [ $kernelver == "5.14.8" ] || [ $kernelver == "5.14.7" ] || [ $kernelver == "5.14.6" ] || [ $kernelver == "5.14.5" ] || [ $kernelver == "5.14.4" ] || [ $kernelver == "5.14.3" ] || [ $kernelver == "5.14.2" ] || [ $kernelver == "5.14.1" ]; then
     #TODO: apply 5.14.21-specific patches
+    gnuver="-std=gnu89"
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply the BMQ/PDS scheduler patch? (y/n)\n"
         read -p "> " input
@@ -182,6 +185,19 @@ if [ $kernelver == "5.14.21" ] || [ $kernelver == "5.14.20" ] || [ $kernelver ==
     echo -ne "\nApplied 5.14.xx specific patches"
 elif [ $kernelver != "5.14.21" ] || [ $kernelver != "5.14.20" ] || [ $kernelver != "5.14.19" ] || [ $kernelver != "5.14.18" ] || [ $kernelver != "5.14.17" ] || [ $kernelver != "5.14.16" ] || [ $kernelver != "5.14.15" ] || [ $kernelver != "5.14.14" ] || [ $kernelver != "5.14.13" ] || [ $kernelver != "5.14.12" ] || [ $kernelver != "5.14.11" ] || [ $kernelver != "5.14.10" ] || [ $kernelver != "5.14.9" ] || [ $kernelver != "5.14.8" ] || [ $kernelver != "5.14.7" ] || [ $kernelver != "5.14.6" ] || [ $kernelver != "5.14.5" ] || [ $kernelver != "5.14.4" ] || [ $kernelver != "5.14.3" ] || [ $kernelver != "5.14.2" ] || [ $kernelver != "5.14.1" ]; then
     #APPLY GENERAL PATCHES (Hopefully it works lol)
+     while [ $inputdone != "true" ]; do
+        echo -ne "\n(REQUIRED ONLY 5.18-rc1+ (2022-) KERNELS!!) Apply gnu11 patch (y/n)\n"
+        read -p "> " input
+        if [ $input == "y" ] || [ $input == "" ]; then
+            echo -ne "\nApplying the gnu11 patch"
+            gnuver="-std=gnu11"
+            inputdone="true"
+        elif [ $input == "n" ]; then
+            echo -ne "user selected no\n"
+            echo -ne "\nWARNING: This means you understand your kernel is before 5.18-rc1 released."
+            inputdone="true"
+        fi
+    done
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply uarch patches? (y/n)\n"
         read -p "> " input
