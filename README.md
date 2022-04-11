@@ -8,17 +8,6 @@ Linux-super is a modified ```5.14.xx``` kernel patched for speed. This kernel is
 - Will use git soon!
 - Does not support ```5.18+``` kernels at the moment
 
-# Credits
-
-TkG Linux kernel! Please check them out!
-- https://github.com/Frogging-Family/linux-tkg
-
-Xanmod!
-- https://github.com/xanmod/linux-patches
-
-Graysky for his uarch patch!
-- https://github.com/graysky2/kernel_compiler_patch
-
 # Requirements
 
 - ```sudo``` / ```doas``` (for elevation)
@@ -29,6 +18,17 @@ Graysky for his uarch patch!
 - ```grub``` (required to be installed)
 - ```wget``` (required but will be removed soon)
 - ```gcc``` (required)
+
+# Credits
+
+TkG Linux kernel! Please check them out!
+- https://github.com/Frogging-Family/linux-tkg
+
+Xanmod!
+- https://github.com/xanmod/linux-patches
+
+Graysky for his uarch patch!
+- https://github.com/graysky2/kernel_compiler_patch
 
 # Setting it all up (default kernel)
 
