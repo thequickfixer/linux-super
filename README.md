@@ -21,7 +21,7 @@ Linux-super is a modified ```5.14.xx``` kernel patched for speed. This kernel is
 
 # Credits
 
-TkG Linux kernel! Please check them out!
+TkG Linux kernel!
 - https://github.com/Frogging-Family/linux-tkg
 
 Xanmod!
