@@ -13,6 +13,12 @@ Linux-super is a kernel patched for speed. This kernel isn't expected to be supe
 TkG Linux kernel! Please check them out!
 - https://github.com/Frogging-Family/linux-tkg
 
+Xanmod!
+- https://github.com/graysky2/kernel_compiler_patch
+
+Graysky for his uarch patch!
+- https://github.com/xanmod/linux-patches
+
 # Requirements
 
 - ```sudo``` / ```doas``` (for elevation)
