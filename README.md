@@ -98,3 +98,9 @@ Then do:
 ```
 ./run.sh
 ```
+
+# Resolve installation issues
+
+1. Remove the folder linux-super that you git cloned
+2. Retry git cloning the repo
+3. Retry running ```./run.sh``` after a fix
