@@ -92,7 +92,7 @@ echo -ne "\n- Add patches\n"
 read -p "Press enter to resume..."
 
 cd /usr/src/linux-$kernelver
-if [ $kernelver == $vaild_kernel_514 ]; then
+if [ $kernelver == "${vaild_kernel_514[*]}" ]; then
     #TODO: apply 5.14.21-specific patches
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply the BMQ/PDS scheduler patch? (y/n)\n"
@@ -183,7 +183,7 @@ if [ $kernelver == $vaild_kernel_514 ]; then
     done
     clr_input
     echo -ne "\nApplied 5.14.xx specific patches"
-elif [ $kernelver != $vaild_kernel_514 ]; then
+elif [ $kernelver != "${vaild_kernel_514[*]}" ]; then
     #APPLY GENERAL PATCHES (Hopefully it works lol)
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply uarch patches? (y/n)\n"
