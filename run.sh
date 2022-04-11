@@ -296,7 +296,7 @@ read -p "Press enter to resume..."
 
 # TODO: force program to quit if ctrl-c below
 
-$loginman make $debug_make -j$physical_cpu_amount
+$loginman make $debug_make $the_build -j$physical_cpu_amount
 $loginman make modules_install && $loginman make install
 $loginman dracut --hostonly --force --kver $kernelver
 $loginman grub-mkconfig -o /boot/grub/grub.cfg
