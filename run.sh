@@ -100,7 +100,7 @@ echo -ne "\n- Add patches\n"
 read -p "Press enter to resume..."
 
 cd /usr/src/linux-$kernelver
-if [ $kernelver == "5.14.21" ] || [ $kernelver == "5.14.20" ] || [ $kernelver == "5.14.19" ] || [ $kernelver == "5.14.18" ] || [ $kernelver == "5.14.17" ] || [ $kernelver == "5.14.16" ] || [ $kernelver == "5.14.15" ] || [ $kernelver == "5.14.14" ] || [ $kernelver == "5.14.13" ] || [ $kernelver == "5.14.12" ] || [ $kernelver == "5.14.11" ] || [ $kernelver == "5.14.10" ] || [ $kernelver == "5.14.9" ] || [ $kernelver == "5.14.8" ] || [ $kernelver == "5.14.7" ] || [ $kernelver == "5.14.6" ] || [ $kernelver == "5.14.5" ] || [ $kernelver == "5.14.4" ] || [ $kernelver == "5.14.3" ] || [ $kernelver == "5.14.2" ] || [ $kernelver == "5.14.1" ]; then
+if [[ $kernelver =~ ^(5.14.21|5.14.20|5.14.19|5.14.18|5.14.17|5.14.16|5.14.15|5.14.14|5.14.13|5.14.12|5.14.11|5.14.10|5.14.9|5.14.8|5.14.7|5.14.6|5.14.5|5.14.4|5.14.3|5.14.2|5.14.1)$ ]]
     #TODO: apply 5.14.21-specific patches
     gnuver="-std=gnu89"
     while [ $inputdone != "true" ]; do
@@ -192,8 +192,8 @@ if [ $kernelver == "5.14.21" ] || [ $kernelver == "5.14.20" ] || [ $kernelver ==
     done
     clr_input
     echo -ne "\nApplied 5.14.xx specific patches"
-elif [ $kernelver != "5.14.21" ] || [ $kernelver != "5.14.20" ] || [ $kernelver != "5.14.19" ] || [ $kernelver != "5.14.18" ] || [ $kernelver != "5.14.17" ] || [ $kernelver != "5.14.16" ] || [ $kernelver != "5.14.15" ] || [ $kernelver != "5.14.14" ] || [ $kernelver != "5.14.13" ] || [ $kernelver != "5.14.12" ] || [ $kernelver != "5.14.11" ] || [ $kernelver != "5.14.10" ] || [ $kernelver != "5.14.9" ] || [ $kernelver != "5.14.8" ] || [ $kernelver != "5.14.7" ] || [ $kernelver != "5.14.6" ] || [ $kernelver != "5.14.5" ] || [ $kernelver != "5.14.4" ] || [ $kernelver != "5.14.3" ] || [ $kernelver != "5.14.2" ] || [ $kernelver != "5.14.1" ]; then
-    #APPLY GENERAL PATCHES (Hopefully it works lol)
+else
+     #APPLY GENERAL PATCHES (Hopefully it works lol)
      while [ $inputdone != "true" ]; do
         echo -ne "\n(REQUIRED ONLY 5.18-rc1+ (2022-) KERNELS!!) Apply gnu11 patch (y/n)\n"
         read -p "> " input
