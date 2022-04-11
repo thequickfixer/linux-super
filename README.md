@@ -2,6 +2,8 @@
 
 Linux-super is a modified ```5.14.xx``` kernel patched for speed. This kernel isn't expected to be super secure, but secure to some degree. Expect missing things and bugs, if there is report them and or push a commit.
 
+This kernel doesn't have hardening to certain extents.
+
 # Known-issues
 
 - Only supports ```5.xx.xx``` kernels
