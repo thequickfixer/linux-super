@@ -5,12 +5,13 @@ input=""
 inputdone="false"
 loginman=""
 kernelver=""
+debug_make=""
 # VV for 5.18+ kernels
 gnuver=""
 physical_cpu_amount=`grep -c ^processor /proc/cpuinfo`
 
 # Other
-ver=0.2.3
+ver=0.2.3.1
 location=`pwd`
 savedlocation=$location
 kernelname=-super
@@ -39,6 +40,19 @@ echo -ne "\nWelcome to the linux-super installer v$ver"
 while ! [ -x "$(command -v $loginman)" ]; do
     echo -ne "\nPlease enter your preferred privilege escalation manager\n(doas or sudo)?\n"
     read -p "> " loginman
+done
+
+while [ $inputdone != "true" ]; do
+    echo -ne "\nEnable script debugging (y or n)?\n"
+    read -p "> " input
+    if [ $input == "y" ] || [ $input == "" ]; then
+        echo -ne "\nEnabling debugging for script."
+        debug_make="-N"
+        inputdone="true"
+    elif [ $input == "n" ]; then
+        echo -ne "\nuser selected no"
+        inputdone="true"
+    fi
 done
 
 mkdir linux-super-work
@@ -190,6 +204,7 @@ elif [ $kernelver != "5.14.21" ] || [ $kernelver != "5.14.20" ] || [ $kernelver 
         read -p "> " input
         if [ $input == "y" ] || [ $input == "" ]; then
             echo -ne "\nApplying the gnu11 patch"
+            echo -ne "\nWARNING: This means you understand your kernel is after 5.18-rc1 released."
             gnuver="-std=gnu11"
             inputdone="true"
         elif [ $input == "n" ]; then
@@ -198,6 +213,7 @@ elif [ $kernelver != "5.14.21" ] || [ $kernelver != "5.14.20" ] || [ $kernelver 
             inputdone="true"
         fi
     done
+    clr_input
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply uarch patches? (y/n)\n"
         read -p "> " input
@@ -280,7 +296,7 @@ read -p "Press enter to resume..."
 
 # TODO: force program to quit if ctrl-c below
 
-$loginman make -j$physical_cpu_amount
+$loginman make $debug_make -j$physical_cpu_amount
 $loginman make modules_install && $loginman make install
 $loginman dracut --hostonly --force --kver $kernelver
 $loginman grub-mkconfig -o /boot/grub/grub.cfg
