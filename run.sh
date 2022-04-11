@@ -22,10 +22,6 @@ WORKDIR=$location/linux-super-work
 validNum='^[0-9]+$'
 t_mb=$(free -m | awk '/^Mem:/{print $2}')
 
-# Exported variables
-the_build="KBUILD_AFLAGS="-D__ASSEMBLY__ $common_flags" KBUILD_CFLAGS="-fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE $gnuver $common_flags" KBUILD_CPPFLAGS="-D__KERNEL__ $common_flags""
-
-
 # Functions
 # Clear input
 function clr_input() {
@@ -296,7 +292,7 @@ read -p "Press enter to resume..."
 
 # TODO: force program to quit if ctrl-c below
 
-$loginman make $debug_make $the_build -j$physical_cpu_amount
+$loginman make $debug_make KBUILD_AFLAGS="-D__ASSEMBLY__ $common_flags" KBUILD_CFLAGS="-fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE $gnuver $common_flags" KBUILD_CPPFLAGS="-D__KERNEL__ $common_flags" -j$physical_cpu_amount
 $loginman make modules_install && $loginman make install
 $loginman dracut --hostonly --force --kver $kernelver
 $loginman grub-mkconfig -o /boot/grub/grub.cfg
