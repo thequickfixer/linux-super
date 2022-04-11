@@ -79,7 +79,18 @@ Un-comment (#) it out and replace it with this:
 GRUB_CMDLINE_LINUX_DEFAULT="quiet audit=0 loglevel=0 no_debug_objects"
 ```
 
-Then run the installer:
+git clone the linux-super repo:
+
+```
+git clone https://github.com/thequickfixer/linux-super.git
+```
+Change the directory:
+
+```
+cd linux-super/
+```
+
+Then do:
 
 ```
 ./run.sh
