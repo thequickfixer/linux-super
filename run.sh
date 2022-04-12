@@ -34,7 +34,7 @@ function get_patch_input() {
             echo -ne "User answered $input"
             echo -ne $3
             for i in "$savedlocation/$toPatch"; 
-                do echo -ne "$loginman patch -N -p1 < $i\n"
+                do $loginman patch -N -p1 < $i
             done
             inputdone="true"
         elif [[ $input =~ ^(n|N|no|No)$ ]]; then
