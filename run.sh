@@ -24,6 +24,25 @@ function clr_input() {
     input=""
 }  
 
+function patch_input() {
+    local inputdone="false"; local input=""
+    local prompt=$1; local toPatch=$2
+    while [ $inputdone == "false" ]; do
+        echo -ne $prompt
+        read -p "> " input
+        if [[ $input =~ ^(y|Y|yes|Yes|"")$ ]]; then
+            echo -ne "User answered YES"
+            for i in "$savedlocation/$toPatch"; 
+                do echo -ne "$loginman patch -N -p1 < $i\n"
+            done
+            inputdone="true"
+        elif [[ $input =~ ^(n|N|no|No)$ ]]; then
+            echo -ne "User answered NO\n"
+            inputdone="true"
+        fi
+    done
+}
+
 function get_input() {
 
 local inputdone="false"
@@ -51,7 +70,7 @@ while ! [ -x "$(command -v $loginman)" ]; do
     read -p "> " loginman
 done
 
-get_input "\nEnable script debugging (y or n)?\n" "debug_make="-n""
+get_input "\nEnable script debugging (y or n)?\n" "export debug_make="-n""
 
 mkdir linux-super-work
 cd $WORKDIR
