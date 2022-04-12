@@ -12,7 +12,7 @@ gnuver=""
 
 
 # Other
-ver=0.2.3.3
+ver=0.2.3.4
 location=`pwd`
 savedlocation=$location
 kernelname=-super
@@ -118,7 +118,7 @@ if [[ $kernelver =~ ^(5.14.21|5.14.20|5.14.19|5.14.18|5.14.17|5.14.16|5.14.15|5.
         echo -ne "\nApply the BMQ/PDS scheduler patch? (y/n)\n"
         read -p "> " input
         if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nApplying the BMQ/PDS scheduler patch"
+            echo -ne "\nApplying the BMQ/PDS scheduler patch\n"
             $loginman patch -N -p1 < $savedlocation/linux-super-patches/5.14/tkg/projectc/prjc_v5.14-r3.patch
             inputdone="true"
         elif [ $input == "n" ]; then
