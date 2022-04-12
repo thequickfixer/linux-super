@@ -24,7 +24,7 @@ function clr_input() {
     input=""
 }  
 
-function patch_input() {
+function get_patch_input() {
     local inputdone="false"; local input=""
     local prompt=$1; local toPatch=$2
     while [ $inputdone == "false" ]; do
