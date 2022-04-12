@@ -32,7 +32,7 @@ function get_patch_input() {
         read -p "> " input
         if [[ $input =~ ^(y|Y|yes|Yes|"")$ ]]; then
             echo -ne "User answered $input"
-            echo -ne $3
+            echo -ne $msg
             for i in "$savedlocation/$toPatch"; 
                 do $loginman patch -N -p1 < $i
             done
