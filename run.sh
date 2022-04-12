@@ -66,7 +66,7 @@ done
 function if_not_dir() {
 
 if [ ! -d $1 ]; then
-    get_input $2 $3
+    get_input "$2" "$3"
 fi
 
 }
