@@ -51,7 +51,7 @@ while ! [ -x "$(command -v $loginman)" ]; do
     read -p "> " loginman
 done
 
-get_input "\nEnable script debugging (y or n)?\n" debug_make="-n"
+get_input "\nEnable script debugging (y or n)?\n" "debug_make="-n""
 
 mkdir linux-super-work
 cd $WORKDIR
