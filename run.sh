@@ -53,20 +53,6 @@ done
 
 get_input "\nEnable script debugging (y or n)?\n" debug_make="-n"
 
-while [ $inputdone != "true" ]; do
-    echo -ne "\nEnable script debugging (y or n)?\n"
-    read -p "> " input
-    if [ $input == "y" ] || [ $input == "" ]; then
-        echo -ne "\nEnabling debugging for script."
-        debug_make="-n"
-        inputdone="true"
-    elif [ $input == "n" ]; then
-        echo -ne "\nuser selected no"
-        inputdone="true"
-    fi
-done
-clr_input
-
 mkdir linux-super-work
 cd $WORKDIR
 while [[ !(-f "linux-$kernelver.tar.xz") ]]; do #while the file does not exist on disk
@@ -79,21 +65,8 @@ while [[ !(-f "linux-$kernelver.tar.xz") ]]; do #while the file does not exist o
 done
 
 if [ ! -d "/etc/sysctl.d/override.conf" ]; then
-    while [ $inputdone != "true" ]; do
-        echo -ne "\nApply sysctl patches? (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nPerforming patches..."
-            $loginman cp $savedlocation/linux-super-patches/sysctl/override.conf /etc/sysctl.d/
-            echo -ne "Applied sysctl patch for next reboot"
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "\nuser selected no"
-            inputdone="true"
-        fi
-    done
+    get_input "\nApply sysctl patches? (y/n)\n" "$loginman cp $savedlocation/linux-super-patches/sysctl/override.conf /etc/sysctl.d/"
 fi
-clr_input
 
 if [ ! -d "/usr/src/linux-$kernelver" ]; then
     while [ $inputdone != "true" ]; do
