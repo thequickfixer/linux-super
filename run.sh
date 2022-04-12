@@ -26,12 +26,12 @@ function clr_input() {
 
 function get_patch_input() {
     local inputdone="false"; local input=""
-    local prompt=$1; local toPatch=$2
+    local prompt=$1; local toPatch=$2; local msg=$3
     while [ $inputdone == "false" ]; do
         echo -ne $prompt
         read -p "> " input
         if [[ $input =~ ^(y|Y|yes|Yes|"")$ ]]; then
-            echo -ne "User answered YES"
+            echo -ne "User answered $input"
             for i in "$savedlocation/$toPatch"; 
                 do echo -ne "$loginman patch -N -p1 < $i\n"
             done
@@ -51,8 +51,8 @@ local input=""
 while [ $inputdone != "true" ]; do
     echo -ne $1
     read -p "> " input
-    if [[ $input =~ ^(Y|y|yes|YES)$ ]]; then
-        echo -ne "\nuser selected yes"
+    if [[ $input =~ ^(Y|y|yes|YES|"")$ ]]; then
+        echo -ne "\nuser selected $input"
         $2
         inputdone="true"
     elif [[ $input =~ ^(N|n|no|NO)$ ]]; then
@@ -60,6 +60,14 @@ while [ $inputdone != "true" ]; do
         inputdone="true"
     fi
 done
+
+}
+
+function if_not_dir() {
+
+if [ ! -d $1 ]; then
+    get_input $2 $3
+fi
 
 }
 
@@ -83,13 +91,17 @@ while [[ !(-f "linux-$kernelver.tar.xz") ]]; do #while the file does not exist o
     fi
 done
 
-if [ ! -d "/etc/sysctl.d/override.conf" ]; then
-    get_input "\nApply sysctl patches? (y/n)\n" "$loginman cp $savedlocation/linux-super-patches/sysctl/override.conf /etc/sysctl.d/"
-fi
+if_not_dir "/etc/sysctl.d/override.conf" "\nApply sysctl patches? (y/n)\n" "$loginman cp $savedlocation/linux-super-patches/sysctl/override.conf /etc/sysctl.d/"
 
-if [ ! -d "/usr/src/linux-$kernelver" ]; then
-    get_input "\nPerform extraction of linux-$kernelver\n(y or n)?\n" "$loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/"
-fi
+#if [ ! -d "/etc/sysctl.d/override.conf" ]; then
+#    get_input "\nApply sysctl patches? (y/n)\n" "$loginman cp $savedlocation/linux-super-patches/sysctl/override.conf /etc/sysctl.d/"
+#fi
+
+if_not_dir "/usr/src/linux-$kernelver" "\nPerform extraction of linux-$kernelver\n(y or n)?\n" "$loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/"
+
+#if [ ! -d "/usr/src/linux-$kernelver" ]; then
+#    get_input "\nPerform extraction of linux-$kernelver\n(y or n)?\n" "$loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/"
+#fi
 
 echo -ne "\nResuming this will:"
 echo -ne "\n- Add patches\n"
