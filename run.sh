@@ -7,12 +7,9 @@ loginman=""
 kernelver=""
 debug_make=""
 physical_cpu_amount=`grep -c ^processor /proc/cpuinfo`
-# VV for 5.18+ kernels
-gnuver=""
-
 
 # Other
-ver=0.2.3.4
+ver=0.2.3.5
 location=`pwd`
 savedlocation=$location
 kernelname=-super
@@ -100,7 +97,6 @@ read -p "Press enter to resume..."
 cd /usr/src/linux-$kernelver
 if [[ $kernelver =~ ^(5.14.21|5.14.20|5.14.19|5.14.18|5.14.17|5.14.16|5.14.15|5.14.14|5.14.13|5.14.12|5.14.11|5.14.10|5.14.9|5.14.8|5.14.7|5.14.6|5.14.5|5.14.4|5.14.3|5.14.2|5.14.1)$ ]]; then
     #TODO: apply 5.14.21-specific patches
-    gnuver="-std=gnu89"
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply the GCC optimizations patch? (y/n)\n"
         read -p "> " input
@@ -204,22 +200,6 @@ if [[ $kernelver =~ ^(5.14.21|5.14.20|5.14.19|5.14.18|5.14.17|5.14.16|5.14.15|5.
     clr_input
     echo -ne "\nApplied 5.14.xx specific patches"
 else
-     #APPLY GENERAL PATCHES (Hopefully it works lol)
-     while [ $inputdone != "true" ]; do
-        echo -ne "\n(REQUIRED ONLY 5.18-rc1+ (2022-) KERNELS!!) Apply gnu11 patch (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nApplying the gnu11 patch"
-            echo -ne "\nWARNING: This means you understand your kernel is after 5.18-rc1 released."
-            gnuver="-std=gnu11"
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "user selected no\n"
-            echo -ne "\nWARNING: This means you understand your kernel is before 5.18-rc1 released."
-            inputdone="true"
-        fi
-    done
-    clr_input
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply uarch patches? (y/n)\n"
         read -p "> " input
