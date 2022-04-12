@@ -24,12 +24,34 @@ function clr_input() {
     input=""
 }  
 
+function get_input() {
+
+local inputdone="false"
+local input=""
+
+while [ $inputdone != "true" ]; do
+    echo -ne $1
+    read -p "> " input
+    if [ $input =~ ^(Y|y|yes|YES)$ ]; then
+        echo -ne "\nuser selected yes"
+        $2
+        inputdone="true"
+    elif [ $input =~ ^(N|n|no|NO)$ ]; then
+        echo -ne "\nuser selected no"
+        inputdone="true"
+    fi
+done
+
+}
+
 echo -ne "\nWelcome to the linux-super installer v$ver"
 
 while ! [ -x "$(command -v $loginman)" ]; do
     echo -ne "\nPlease enter your preferred privilege escalation manager\n(doas or sudo)?\n"
     read -p "> " loginman
 done
+
+get_input "\nEnable script debugging (y or n)?\n" debug_make="-n"
 
 while [ $inputdone != "true" ]; do
     echo -ne "\nEnable script debugging (y or n)?\n"
