@@ -32,6 +32,7 @@ function get_patch_input() {
         read -p "> " input
         if [[ $input =~ ^(y|Y|yes|Yes|"")$ ]]; then
             echo -ne "User answered $input"
+            echo -ne $3
             for i in "$savedlocation/$toPatch"; 
                 do echo -ne "$loginman patch -N -p1 < $i\n"
             done
@@ -113,95 +114,21 @@ if [[ $kernelver =~ ^(5.14.21|5.14.20|5.14.19|5.14.18|5.14.17|5.14.16|5.14.15|5.
     #TODO: apply 5.14.21-specific patches
     
     get_input "\nApply the GCC optimizations patch? (y/n)\n" "$loginman patch -N -p1 < $savedlocation/linux-super-patches/5.14/makefile/makefile-1.patch Makefile"
+    echo -ne "Applying the GCC optimizations patch"
     
-    while [ $inputdone != "true" ]; do
-        echo -ne "\nApply the BMQ/PDS scheduler patch? (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nApplying the BMQ/PDS scheduler patch\n"
-            $loginman patch -N -p1 < $savedlocation/linux-super-patches/5.14/tkg/projectc/prjc_v5.14-r3.patch
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "user selected no\n"
-            inputdone="true"
-        fi
-    done
-    clr_input
-    while [ $inputdone != "true" ]; do
-        echo -ne "\nApply the TkG patches? (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nApplying the TkG patches"
-            for i in $savedlocation/linux-super-patches/5.14/tkg/*.patch; 
-                do $loginman patch -N -p1 < $i; 
-            done
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "user selected no\n"
-            inputdone="true"
-        fi
-    done
-    clr_input
-    while [ $inputdone != "true" ]; do
-        echo -ne "\nApply graysky's uarches patch? (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nApplying the uarch patch"
-            for i in $savedlocation/linux-super-patches/5.14/graysky/*.patch; 
-                do $loginman patch -N -p1 < $i; 
-            done
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "user selected no\n"
-            inputdone="true"
-        fi
-    done
-    clr_input
-    while [ $inputdone != "true" ]; do
-        echo -ne "\nApply clearlinux patches? (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nApplying clearlinux patches"
-            for i in $savedlocation/linux-super-patches/clearlinux/*.patch; 
-                do $loginman patch -N -p1 < $i; 
-            done
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "user selected no\n"
-            inputdone="true"
-        fi
-    done
-    clr_input
-    while [ $inputdone != "true" ]; do
-        echo -ne "\nAttempt to apply high resolution timer patches? (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nAttempting to apply high resoultion timer patches..."
-            for i in $savedlocation/linux-super-patches/5.14/ck-hrtimer/*.patch; 
-                do $loginman patch -N -p1 < $i; 
-            done
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "user selected no\n"
-            inputdone="true"
-        fi
-    done
-    clr_input
-    while [ $inputdone != "true" ]; do
-        echo -ne "\nApply user patches? (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nApplying user patches"
-            for i in $savedlocation/linux-super-usr-patches-def/*.patch; 
-                do $loginman patch -N -p1 < $i; 
-            done
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "user selected no\n"
-            inputdone="true"
-        fi
-    done
-    clr_input
+    get_input "\nApply the BMQ/PDS scheduler patch? (y/n)\n" "$loginman patch -N -p1 < $savedlocation/linux-super-patches/5.14/tkg/projectc/prjc_v5.14-r3.patch"
+    echo -ne "Applying the BMQ/PDS scheduler patches"
+    
+    get_patch_input "\nApply the TkG patches? (y/n)\n" "linux-super-patches/5.14/tkg/*.patch" "Applying the TkG patches"
+    
+    get_patch_input "\nApply graysky's uarches patch? (y/n)\n" "linux-super-patches/5.14/graysky/*.patch" "Applying graysky's uarch patch"
+    
+    get_patch_input "\nApply clearlinux patches? (y/n)\n" "linux-super-patches/clearlinux/*.patch" "Applying clearlinux patches"
+    
+    get_patch_input "\nAttempt to apply high resolution timer patches? (y/n)\n" "linux-super-patches/5.14/ck-hrtimer/*.patch" "Attemping to apply high resolution timer patches..."
+    
+    get_patch_input "\nApply user patches? (y/n)\n" "linux-super-usr-patches-def/*.patch" "Applying user patches"
+    
     echo -ne "\nApplied 5.14.xx specific patches"
 else
     while [ $inputdone != "true" ]; do
