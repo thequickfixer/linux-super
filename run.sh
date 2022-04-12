@@ -33,8 +33,8 @@ function get_patch_input() {
         if [[ $input =~ ^(y|Y|yes|Yes|"")$ ]]; then
             echo -ne "User answered $input"
             echo -ne $msg
-            for i in "$savedlocation/$toPatch"; 
-                do $loginman patch -N -p1 < $i
+            for i in "$savedlocation/$toPatch";
+                do $loginman patch -N -p1 < $i;
             done
             inputdone="true"
         elif [[ $input =~ ^(n|N|no|No)$ ]]; then
