@@ -71,6 +71,15 @@ fi
 
 }
 
+function memory_check() {
+if [ $t_mb -gt "2048" ]; then
+    echo -ne "\nUser has enough ram to generate the kernel, Above 2048MB\n"
+    else
+    echo -ne "\nWARNING: USER MAY NOT HAVE ENOUGH RAM! Below 2048MB\n"
+    read -p "Press enter to resume..."
+fi
+}
+
 echo -ne "\nWelcome to the linux-super installer v$ver"
 
 while ! [ -x "$(command -v $loginman)" ]; do
@@ -93,15 +102,7 @@ done
 
 if_not_dir "/etc/sysctl.d/override.conf" "\nApply sysctl patches? (y/n)\n" "$loginman cp $savedlocation/linux-super-patches/sysctl/override.conf /etc/sysctl.d/"
 
-#if [ ! -d "/etc/sysctl.d/override.conf" ]; then
-#    get_input "\nApply sysctl patches? (y/n)\n" "$loginman cp $savedlocation/linux-super-patches/sysctl/override.conf /etc/sysctl.d/"
-#fi
-
 if_not_dir "/usr/src/linux-$kernelver" "\nPerform extraction of linux-$kernelver\n(y or n)?\n" "$loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/"
-
-#if [ ! -d "/usr/src/linux-$kernelver" ]; then
-#    get_input "\nPerform extraction of linux-$kernelver\n(y or n)?\n" "$loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/"
-#fi
 
 echo -ne "\nResuming this will:"
 echo -ne "\n- Add patches\n"
@@ -110,19 +111,9 @@ read -p "Press enter to resume..."
 cd /usr/src/linux-$kernelver
 if [[ $kernelver =~ ^(5.14.21|5.14.20|5.14.19|5.14.18|5.14.17|5.14.16|5.14.15|5.14.14|5.14.13|5.14.12|5.14.11|5.14.10|5.14.9|5.14.8|5.14.7|5.14.6|5.14.5|5.14.4|5.14.3|5.14.2|5.14.1)$ ]]; then
     #TODO: apply 5.14.21-specific patches
-    while [ $inputdone != "true" ]; do
-        echo -ne "\nApply the GCC optimizations patch? (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nApplying the GCC optimization patch"
-            $loginman patch -N -p1 < $savedlocation/linux-super-patches/5.14/makefile/makefile-1.patch Makefile
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "user selected no\n"
-            inputdone="true"
-        fi
-    done
-    clr_input
+    
+    get_input "\nApply the GCC optimizations patch? (y/n)\n" "$loginman patch -N -p1 < $savedlocation/linux-super-patches/5.14/makefile/makefile-1.patch Makefile"
+    
     while [ $inputdone != "true" ]; do
         echo -ne "\nApply the BMQ/PDS scheduler patch? (y/n)\n"
         read -p "> " input
@@ -276,12 +267,7 @@ else
 fi
 
 #Let the user know they might not have enough ram <2GB
-if [ $t_mb -gt "2048" ]; then
-    echo -ne "\nUser has enough ram to generate the kernel, Above 2048MB\n"
-    else
-    echo -ne "\nWARNING: USER MAY NOT HAVE ENOUGH RAM! Below 2048MB\n"
-    read -p "Press enter to resume..."
-fi
+memory_check
 
 if [ -d -a "/usr/src/linux-$kernelver/.config" ]; then
     $loginman make menuconfig
