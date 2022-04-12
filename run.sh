@@ -111,84 +111,33 @@ read -p "Press enter to resume..."
 
 cd /usr/src/linux-$kernelver
 if [[ $kernelver =~ ^(5.14.21|5.14.20|5.14.19|5.14.18|5.14.17|5.14.16|5.14.15|5.14.14|5.14.13|5.14.12|5.14.11|5.14.10|5.14.9|5.14.8|5.14.7|5.14.6|5.14.5|5.14.4|5.14.3|5.14.2|5.14.1)$ ]]; then
-    #TODO: apply 5.14.21-specific patches
     
     get_input "\nApply the GCC optimizations patch? (y/n)\n" "$loginman patch -N -p1 Makefile $savedlocation/linux-super-patches/5.14/makefile/makefile-1.patch"
 
-    get_patch_input "\nApply the BMQ/PDS scheduler patch? (y/n)\n" "linux-super-patches/5.14/tkg/projectc/*.patch" "Applying BMQ/PDS patches"
+    get_patch_input "\nApply the BMQ/PDS scheduler patch? (y/n)\n" "linux-super-patches/5.14/tkg/projectc/*.patch" "\nApplying BMQ/PDS patches"
     
-    get_patch_input "\nApply the TkG patches? (y/n)\n" "linux-super-patches/5.14/tkg/*.patch" "Applying the TkG patches"
+    get_patch_input "\nApply the TkG patches? (y/n)\n" "linux-super-patches/5.14/tkg/*.patch" "\nApplying the TkG patches"
     
-    get_patch_input "\nApply graysky's uarches patch? (y/n)\n" "linux-super-patches/5.14/graysky/*.patch" "Applying graysky's uarch patch"
+    get_patch_input "\nApply graysky's uarches patch? (y/n)\n" "linux-super-patches/5.14/graysky/*.patch" "\nApplying graysky's uarch patch"
     
-    get_patch_input "\nApply clearlinux patches? (y/n)\n" "linux-super-patches/clearlinux/*.patch" "Applying clearlinux patches"
+    get_patch_input "\nApply clearlinux patches? (y/n)\n" "linux-super-patches/clearlinux/*.patch" "\nApplying clearlinux patches"
     
-    get_patch_input "\nAttempt to apply high resolution timer patches? (y/n)\n" "linux-super-patches/5.14/ck-hrtimer/*.patch" "Attemping to apply high resolution timer patches..."
+    get_patch_input "\nAttempt to apply high resolution timer patches? (y/n)\n" "linux-super-patches/5.14/ck-hrtimer/*.patch" "\nAttemping to apply high resolution timer patches..."
     
-    get_patch_input "\nApply user patches? (y/n)\n" "linux-super-usr-patches-def/*.patch" "Applying user patches"
+    get_patch_input "\nApply user patches? (y/n)\n" "linux-super-usr-patches-def/*.patch" "\nApplying user patches"
     
     echo -ne "\nApplied 5.14.xx specific patches"
+    
 else
-    while [ $inputdone != "true" ]; do
-        echo -ne "\nApply uarch patches? (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nApplying the uarch patch"
-            for i in $savedlocation/linux-super-patches/graysky/*.patch; 
-                do $loginman patch -N -p1 < $i; 
-            done
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "user selected no\n"
-            inputdone="true"
-        fi
-    done
-    clr_input
-    while [ $inputdone != "true" ]; do
-        echo -ne "\nApply clearlinux patches? (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nApplying clearlinux patches"
-            for i in $savedlocation/linux-super-patches/clearlinux/*.patch; 
-                do $loginman patch -N -p1 < $i; 
-            done
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "user selected no\n"
-            inputdone="true"
-        fi
-    done
-    clr_input
-    while [ $inputdone != "true" ]; do
-        echo -ne "\nAttempt to apply high resolution timer patches? (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nAttempting to apply high resoultion timer patches..."
-            for i in $savedlocation/linux-super-patches/5.14/ck-hrtimer/*.patch; 
-                do $loginman patch -N -p1 < $i; 
-            done
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "user selected no\n"
-            inputdone="true"
-        fi
-    done
-    clr_input
-    while [ $inputdone != "true" ]; do
-        echo -ne "\nApply user patches? (y/n)\n"
-        read -p "> " input
-        if [ $input == "y" ] || [ $input == "" ]; then
-            echo -ne "\nApplying user patches"
-            for i in $savedlocation/linux-super-usr-patches/*.patch; 
-                do $loginman patch -N -p1 < $i; 
-            done
-            inputdone="true"
-        elif [ $input == "n" ]; then
-            echo -ne "user selected no\n"
-            inputdone="true"
-        fi
-    done
-    clr_input
+    
+    get_patch_input "\nApply graysky's uarch patch? (y/n)\n" "linux-super-patches/graysky/*.patch" "\nApplying graysky's uarch patch"
+    
+    get_patch_input "\nApply clearlinux patches? (y/n)\n" "linux-super-patches/clearlinux/*.patch" "\nApplying clearlinux patches"
+    
+    get_patch_input "\nAttempt to apply high resolution timer patches? (y/n)\n" "linux-super-patches/5.14/ck-hrtimer/*.patch" "\nAttempting to apply high resoultion timer patches..."
+    
+    get_patch_input "\nApply user patches? (y/n)\n" "linux-super-usr-patches/*.patch" "\nApplying user patches"
+
 fi
 
 #Let the user know they might not have enough ram <2GB
