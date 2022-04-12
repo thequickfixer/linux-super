@@ -32,11 +32,11 @@ local input=""
 while [ $inputdone != "true" ]; do
     echo -ne $1
     read -p "> " input
-    if [ $input =~ ^(Y|y|yes|YES)$ ]; then
+    if [[ $input =~ ^(Y|y|yes|YES)$ ]]; then
         echo -ne "\nuser selected yes"
         $2
         inputdone="true"
-    elif [ $input =~ ^(N|n|no|NO)$ ]; then
+    elif [[ $input =~ ^(N|n|no|NO)$ ]]; then
         echo -ne "\nuser selected no"
         inputdone="true"
     fi
