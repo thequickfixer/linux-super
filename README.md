@@ -106,3 +106,4 @@ Then do:
 1. Remove the folder linux-super that you git cloned
 2. Retry git cloning the repo
 3. Retry running ```./run.sh``` after a fix
+4. Reset sysctl patch by pressing ```y``` when prompted
