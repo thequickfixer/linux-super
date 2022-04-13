@@ -149,8 +149,7 @@ fi
 
 if [ ! -d -a "/usr/src/linux-$kernelver/.config" ]; then
     $loginman cp $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
-    $loginman make menuconfig
-    $loginman make oldconfig && $loginman make prepare
+    $loginman make menuconfig && $loginman make prepare
 fi
 
 echo -ne "\nWARNING! Resuming this will:"
