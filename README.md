@@ -24,6 +24,40 @@ We recommend linux ```5.14.21``` as there are more options for the kernel. The k
 - ```wget``` (required but will be removed soon)
 - ```gcc``` (required)
 
+# Installation
+
+Setting up grub beforehand:
+
+```
+sudo nano /etc/default/grub
+```
+Ctrl+w to find this:
+
+```GRUB_CMDLINE_LINUX_DEFAULT```
+
+Un-comment (#) it out and replace it with this:
+
+```
+GRUB_CMDLINE_LINUX_DEFAULT="quiet audit=0 loglevel=0 no_debug_objects"
+```
+
+git clone the linux-super repo:
+
+```
+git clone https://github.com/thequickfixer/linux-super.git
+```
+Change the directory:
+
+```
+cd linux-super/
+```
+
+Then do:
+
+```
+./run.sh
+```
+
 # Credits
 
 TkG Linux kernel!
@@ -64,37 +98,3 @@ Make the default kernel patch directory:
 mkdir linux-super-usr-patches
 ```
 Include patches in that folder for the kernel.
-
-# Installation
-
-Setting up grub beforehand:
-
-```
-sudo nano /etc/default/grub
-```
-Ctrl+w to find this:
-
-```GRUB_CMDLINE_LINUX_DEFAULT```
-
-Un-comment (#) it out and replace it with this:
-
-```
-GRUB_CMDLINE_LINUX_DEFAULT="quiet audit=0 loglevel=0 no_debug_objects"
-```
-
-git clone the linux-super repo:
-
-```
-git clone https://github.com/thequickfixer/linux-super.git
-```
-Change the directory:
-
-```
-cd linux-super/
-```
-
-Then do:
-
-```
-./run.sh
-```
