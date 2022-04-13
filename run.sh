@@ -147,6 +147,7 @@ if [ -d -a "/usr/src/linux-$kernelver/.config" ]; then
     $loginman make menuconfig
 fi
 
+#Config will not load for some reason... uses defaults instead...
 if [ ! -d -a "/usr/src/linux-$kernelver/.config" ]; then
     $loginman cp $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
     $loginman make menuconfig && $loginman make prepare
