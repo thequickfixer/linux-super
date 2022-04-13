@@ -143,15 +143,9 @@ fi
 #Let the user know they might not have enough ram <2GB
 memory_check
 
-if [ -d -a "/usr/src/linux-$kernelver/.config" ]; then
-    $loginman make menuconfig
-fi
-
-#Config will not load for some reason... uses defaults instead...
-if [ ! -d -a "/usr/src/linux-$kernelver/.config" ]; then
-    $loginman cp $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
-    $loginman make menuconfig && $loginman make prepare
-fi
+#patched, but should save user config...
+$loginman cp -rf $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
+$loginman make menuconfig
 
 echo -ne "\nWARNING! Resuming this will:"
 echo -ne "\n- build the kernel"
