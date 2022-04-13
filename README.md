@@ -1,11 +1,9 @@
 # Welcome to linux-super
 
-Linux-super is a modified ```5.14.xx``` kernel patched for speed. This kernel isn't expected to be super secure, but secure to some degree. Expect missing things and bugs, if there is report them and or push a commit.
+Linux-super is a modified ```5.14.xx``` kernel patched for speed. This kernel isn't expected to be super secure, but secure to some degree.
 
 - This kernel doesn't have hardening to certain extents.
-- This kernel was also pushed out to the public early.
 - This kernel will be updated frequenently throughout each day.
-- This kernel is for advanced users only.
 - Enabling debugging causes errors.
 
 We recommend linux ```5.14.21``` as there are more options for the kernel. The kernel will appear in GRUB under advanced options labeled as ```linux-5.14.21```.
@@ -101,10 +99,3 @@ Then do:
 ```
 ./run.sh
 ```
-
-# Resolve installation issues
-
-1. Remove the folder linux-super that you git cloned
-2. Retry git cloning the repo
-3. Retry running ```./run.sh``` after a fix
-4. Reset sysctl patch by pressing ```y``` when prompted
