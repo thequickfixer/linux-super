@@ -3,8 +3,7 @@
 Linux-super is a modified ```5.14.xx``` kernel patched for speed. This kernel isn't expected to be super secure, but secure to some degree.
 
 - This kernel doesn't have hardening to certain extents.
-- This kernel will be updated frequenently throughout each day.
-- Enabling debugging causes errors.
+- Frequently updated, so if there is bugs please feel free to let us know!
 
 We recommend linux ```5.14.21``` as there are more options for the kernel. The kernel will appear in GRUB under advanced options labeled as ```linux-5.14.21```.
 
