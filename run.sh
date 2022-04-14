@@ -96,7 +96,7 @@ while [[ !(-f "linux-$kernelver.tar.xz") ]]; do #while the file does not exist o
     echo -ne "\nWhat kernel version?\n(Note: 5.14.21 is the kernel default)\n"
     read -p "> " kernelver
     wget --no-clobber https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$kernelver.tar.xz
-    else
+    if [[ !(-f "linux-$kernelver.tar.xz") ]]; then #tell the user something went wrong
         echo "Could not find version ($kernelver)!  Check for typos and try again."
     fi
 done
