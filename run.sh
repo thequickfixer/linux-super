@@ -143,9 +143,18 @@ fi
 #Let the user know they might not have enough ram <2GB
 memory_check
 
-#patched, but should save user config...
-$loginman cp -rf $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
-$loginman make menuconfig
+#saves user config for next time
+if [ -a /usr/src/linux-$kernelver/.config ]; then
+    echo -ne "\n if exists then"
+    read -p "Press enter to resume..."
+    $loginman make menuconfig
+else
+    echo -ne "\n if not exists then"
+    read -p "Press enter to resume..."
+    $loginman cp -rf $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
+    $loginman make menuconfig
+fi
+
 
 echo -ne "\nWARNING! Resuming this will:"
 echo -ne "\n- build the kernel"
