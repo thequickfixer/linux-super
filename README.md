@@ -15,6 +15,7 @@ We recommend linux ```5.14.21``` as there are more options for the kernel. The k
 - ```patch``` (to patch the kernel)
 - ```zstd``` (to increase compatibility)
 - ```tar``` (to extract)
+- ```flex``` (for compatibility)
 - ```grub``` (required to be installed)
 - ```wget``` (required but will be removed soon)
 - ```gcc``` (required)
