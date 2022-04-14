@@ -145,12 +145,8 @@ memory_check
 
 #saves user config for next time
 if [ -a /usr/src/linux-$kernelver/.config ]; then
-    echo -ne "\n if exists then"
-    read -p "Press enter to resume..."
     $loginman make menuconfig
 else
-    echo -ne "\n if not exists then"
-    read -p "Press enter to resume..."
     $loginman cp -rf $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
     $loginman make menuconfig
 fi
