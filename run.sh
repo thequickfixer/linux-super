@@ -113,7 +113,7 @@ read -p "Press enter to resume..."
 cd /usr/src/linux-$kernelver-super
 if [[ $kernelver =~ ^(5.14.21|5.14.20|5.14.19|5.14.18|5.14.17|5.14.16|5.14.15|5.14.14|5.14.13|5.14.12|5.14.11|5.14.10|5.14.9|5.14.8|5.14.7|5.14.6|5.14.5|5.14.4|5.14.3|5.14.2|5.14.1)$ ]]; then
     
-    get_input "\nApply the GCC optimizations patch? (Not recommended at all) (y/n)\n" "$loginman patch -N -p1 Makefile $savedlocation/linux-super-patches/5.14/makefile/makefile-1.patch"
+    get_input "\nApply the GCC optimizations patch?\n (NOT RECOMMENDED UNLESS YOU'RE CERTAIN YOU KNOW WHAT YOU'RE DOING!!!)\n (y/n)\n" "$loginman patch -N -p1 Makefile $savedlocation/linux-super-patches/5.14/makefile/makefile-1.patch"
 
     get_patch_input "\nApply the BMQ/PDS scheduler patch? (y/n)\n" "linux-super-patches/5.14/tkg/projectc/*.patch" "\nApplying BMQ/PDS patches"
     
