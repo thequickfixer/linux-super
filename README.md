@@ -10,8 +10,9 @@ We recommend linux ```5.14.21``` as there are more options for the kernel. The k
 # Requirements
 
 - ```sudo``` / ```doas``` (for elevation)
-- ```cmake``` (for building)
+- ```make``` (for building)
 - ```dracut``` (for initramfs)
+- ```patch``` (to patch the kernel)
 - ```zstd``` (to increase compatibility)
 - ```tar``` (to extract)
 - ```grub``` (required to be installed)
