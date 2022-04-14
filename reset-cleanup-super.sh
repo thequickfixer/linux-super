@@ -25,6 +25,7 @@ while [ $inputdone != "true" ]; do
     read -p "> " input
     if [[ (-d "/usr/src/linux-$input-super") ]]; then
         echo -ne "\nFound and cleaning $input...\n You're about to uninstall linux-super from the build directory /usr/src/linux-$input-super proceed?\n CTRL+C to exit if not! \n"
+        # Triple checks to make sure you know what you're doing.
         $loginman rm -rI /usr/src/linux-$input-super
         inputdone="true"
     else
