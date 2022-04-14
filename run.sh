@@ -9,7 +9,7 @@ debug_make=""
 physical_cpu_amount=`grep -c ^processor /proc/cpuinfo`
 
 # Other
-ver=0.2.3.6
+ver=0.2.3.7
 location=`pwd`
 savedlocation=$location
 kernelname=-super
