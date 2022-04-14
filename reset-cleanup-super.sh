@@ -24,7 +24,7 @@ while [ $inputdone != "true" ]; do
     echo -ne "\nWhat kernel version did you install?\n(Note: 5.14.21 is the kernel default)\n"
     read -p "> " input
     if [[ (-d "/usr/src/linux-$input-super") ]]; then
-        echo -ne "\nFound and cleaning $input...\n You're about to uninstall linux-super from the build directory /usr/src/linux-$input-super proceed?\n"
+        echo -ne "\nFound and cleaning $input...\n You're about to uninstall linux-super from the build directory /usr/src/linux-$input-super proceed?\n CTRL+C to exit if not! \n"
         $loginman rm -rI /usr/src/linux-$input-super
         inputdone="true"
     else
