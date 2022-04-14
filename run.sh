@@ -56,7 +56,7 @@ while [ $inputdone != "true" ]; do
         echo -ne "\nuser selected $input"
         $2
         inputdone="true"
-    elif [[ $input =~ ^(N|n|no|NO)$ ]]; then
+    else
         echo -ne "\nuser selected no"
         inputdone="true"
     fi
@@ -143,14 +143,14 @@ fi
 #Let the user know they might not have enough ram <2GB
 memory_check
 
-#saves user config for next time
-if [ -a /usr/src/linux-$kernelver/.config ]; then
-    $loginman make menuconfig
-else
+#saves user config for next time and lets user choose if exist
+if ! [ -a /usr/src/linux-$kernelver/.config ]; then
     $loginman cp -rf $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
-    $loginman make menuconfig
+else
+    get_input "\n Overwrite .config (resets user config to default) (y/n)?\n" "$loginman cp -rf $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config"
 fi
 
+$loginman make menuconfig
 
 echo -ne "\nWARNING! Resuming this will:"
 echo -ne "\n- build the kernel"
