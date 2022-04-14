@@ -9,7 +9,7 @@ debug_make=""
 physical_cpu_amount=`grep -c ^processor /proc/cpuinfo`
 
 # Other
-ver=0.2.3.7
+ver=0.2.3.8
 location=`pwd`
 savedlocation=$location
 kernelname=-super
@@ -55,6 +55,7 @@ while [ $inputdone != "true" ]; do
     if [[ $input =~ ^(Y|y|yes|YES|"")$ ]]; then
         echo -ne "\nuser selected $input"
         $2
+	$3
         inputdone="true"
     else
         echo -ne "\nuser selected no"
@@ -67,7 +68,7 @@ done
 function if_not_dir() {
 
 if [ ! -d $1 ]; then
-    get_input "$2" "$3"
+    get_input "$2" "$3" "$4"
 fi
 
 }
@@ -103,13 +104,13 @@ done
 
 if_not_dir "/etc/sysctl.d/override.conf" "\nApply sysctl patches? (y/n)\n" "$loginman cp $savedlocation/linux-super-patches/sysctl/override.conf /etc/sysctl.d/"
 
-if_not_dir "/usr/src/linux-$kernelver" "\nPerform extraction of linux-$kernelver\n(y or n)?\n" "$loginman tar -xvf linux-$kernelver.tar.xz -C /usr/src/"
+if_not_dir "/usr/src/linux-$kernelver-super" "\nPerform extraction of linux-$kernelver\n(y or n)?\n" "$loginman tar -xvf linux-$kernelver.tar.xz -C $WORKDIR" "$loginman cp -r linux-$kernelver/ /usr/src/linux-$kernelver-super"
 
 echo -ne "\nResuming this will:"
 echo -ne "\n- Add patches\n"
 read -p "Press enter to resume..."
 
-cd /usr/src/linux-$kernelver
+cd /usr/src/linux-$kernelver-super
 if [[ $kernelver =~ ^(5.14.21|5.14.20|5.14.19|5.14.18|5.14.17|5.14.16|5.14.15|5.14.14|5.14.13|5.14.12|5.14.11|5.14.10|5.14.9|5.14.8|5.14.7|5.14.6|5.14.5|5.14.4|5.14.3|5.14.2|5.14.1)$ ]]; then
     
     get_input "\nApply the GCC optimizations patch? (Not recommended at all) (y/n)\n" "$loginman patch -N -p1 Makefile $savedlocation/linux-super-patches/5.14/makefile/makefile-1.patch"
@@ -144,10 +145,10 @@ fi
 memory_check
 
 #saves user config for next time and lets user choose if exist
-if ! [ -a /usr/src/linux-$kernelver/.config ]; then
-    $loginman cp -rf $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config
+if ! [ -a /usr/src/linux-$kernelver-super/.config ]; then
+    $loginman cp -rf $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver-super/.config
 else
-    get_input "\n Overwrite .config (resets user config to default) (y/n)?\n" "$loginman cp -rf $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver/.config"
+    get_input "\n Overwrite .config (resets user config to default) (y/n)?\n" "$loginman cp -rf $savedlocation/linux-super-patches/defaults/config /usr/src/linux-$kernelver-super/.config"
 fi
 
 $loginman make menuconfig
@@ -163,5 +164,5 @@ read -p "Press enter to resume..."
 
 $loginman make $debug_make -j$physical_cpu_amount
 $loginman make modules_install && $loginman make install
-$loginman dracut --hostonly --force --kver $kernelver
+$loginman dracut --hostonly --force --kver $kernelver-super
 $loginman grub-mkconfig -o /boot/grub/grub.cfg
