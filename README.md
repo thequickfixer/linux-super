@@ -4,7 +4,7 @@ Linux-super is a modified ```5.14.xx``` kernel patched for speed. This kernel is
 
 - This kernel doesn't have hardening to certain extents.
 - Frequently updated, so if there is bugs please feel free to let us know!
-- Fixed requirements so there isn't anymore errors.. because I'm smart of course.
+- Fixing things because I'm smart of course and totally don't make mistakes.
 - Reverting any patch requires removing the folder using ```./reset-cleanup-super.sh```
 
 We recommend linux ```5.14.21``` as there are more options for the kernel. The kernel will appear in GRUB under advanced options labeled as ```linux-5.14.21-super```.
