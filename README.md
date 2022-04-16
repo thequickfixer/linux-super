@@ -24,6 +24,16 @@ We recommend linux ```5.14.21``` as there are more options for the kernel. The k
 - ```wget``` (required but will be removed soon)
 - ```gcc``` (required)
 
+Check to see if you already have ```sudo``` / ```doas``` installed (don't re-install).
+
+Check to see if you already have ```grub``` installed (don't re-install), if you don't have ```grub``` please don't proceed installing.
+
+For copy-paste reasons:
+
+```
+gcc wget bc bison flex zstd tar patch dracut make
+```
+
 # Known-issues
 
 - Supports only ```5.xx.xx``` kernels
