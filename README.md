@@ -15,7 +15,7 @@ We recommend linux ```5.14.21``` as there are more options for the kernel. The k
 - Supports only ```5.xx.xx``` kernels
 - Will use git soon!
 - Doesn't support multi-spaced folders
-- Repo is broken for non-Gentoo users atm.
+- Repo is broken for non-Gentoo users atm, Arch has been tested to not work.
 
 # Requirements
 
