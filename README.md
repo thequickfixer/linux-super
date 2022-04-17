@@ -7,7 +7,7 @@ Linux-super is a modified ```5.14.xx``` kernel patched for speed. This kernel is
 - Fixing things because I'm smart of course.
 - Reverting any patch requires removing the folder using ```./reset-cleanup-super.sh```
 - Switch to the ```experimental``` branch for latest patches... (NOT RECOMMENDED)
-- This current repo is broken
+- Repo is broken for non-Gentoo users atm.
 
 We recommend linux ```5.14.21``` as there are more options for the kernel. The kernel will appear in GRUB under advanced options labeled as ```linux-5.14.21-super```.
 
