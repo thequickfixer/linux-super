@@ -123,6 +123,8 @@ if [[ $kernelver =~ ^(5.14.21|5.14.20|5.14.19|5.14.18|5.14.17|5.14.16|5.14.15|5.
     
     get_patch_input "\nApply clearlinux patches? (y/n)\n" "linux-super-patches/clearlinux/*.patch" "\nApplying clearlinux patches"
     
+    get_patch_input "\nApply Intel Alder-lake ITMT patch? (y/n)\n" "linux-super-patches/5.14/intel/*.patch" "\nApplying Intel Alder-lake ITMT patch"
+    
     get_patch_input "\nAttempt to apply high resolution timer patches? (y/n)\n" "linux-super-patches/5.14/ck-hrtimer/*.patch" "\nAttemping to apply high resolution timer patches..."
     
     get_patch_input "\nApply user patches? (y/n)\n" "linux-super-usr-patches-def/*.patch" "\nApplying user patches"
