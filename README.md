@@ -14,7 +14,7 @@ We recommend linux ```5.14.21``` as there are more options for the kernel. The k
 All of these features are optional and one will be prompted for each one
 
 - Experimental Alder-lake ITMT support (Not recommended and at your own risk) (Improves performance)
-- Experimental GCC optimizations (Not recommended and at your own risk, not -O3 fyi)
+- Experimental GCC optimizations (Not recommended and at your own risk, not -O3 for your infomation)
 - BMQ/PDS schedulers (Improves performance)
 - And more...
 
