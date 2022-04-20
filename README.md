@@ -9,6 +9,15 @@ Linux-super is a modified ```5.14.xx``` kernel patched for speed. This kernel is
 
 We recommend linux ```5.14.21``` as there are more options for the kernel. The kernel will appear in GRUB under advanced options labeled as ```linux-5.14.21-super```.
 
+# Features (Default Kernel)
+
+All of these features are optional and one will be prompted for each one
+
+- Experimental Alder-lake ITMT support (Not recommended and at your own risk) (Improves performance)
+- Experimental GCC optimizations (Not recommended and at your own risk, not -O3 fyi)
+- BMQ/PDS schedulers (Improves performance)
+- And more...
+
 # Known-issues
 
 - Supports only ```5.xx.xx``` kernels
