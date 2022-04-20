@@ -104,7 +104,7 @@ done
 
 if_not_dir "/etc/sysctl.d/override.conf" "\nApply sysctl patches? (y/n)\n" "$loginman cp $savedlocation/linux-super-patches/sysctl/override.conf /etc/sysctl.d/"
 
-if_not_dir "/usr/src/linux-$kernelver-super" "\nPerform extraction of linux-$kernelver\n(y or n)?\n" "$loginman tar -xvf linux-$kernelver.tar.xz -C $WORKDIR" "$loginman cp -r linux-$kernelver/ /usr/src/linux-$kernelver-super"
+if_not_dir "/usr/src/linux-$kernelver-super" "\nPerform extraction of linux-$kernelver\n(y or n)?\n" "tar -xvf linux-$kernelver.tar.xz -C $WORKDIR" "$loginman cp -r linux-$kernelver/ /usr/src/linux-$kernelver-super"
 
 echo -ne "\nResuming this will:"
 echo -ne "\n- Add patches\n"
